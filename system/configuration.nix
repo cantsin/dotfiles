@@ -110,11 +110,14 @@
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
 
+  virtualisation.docker.enable = true;
+  virtualisation.docker.socketActivation = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.james = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = ["wheel" "networkmanager" "docker"];
     shell = pkgs.zsh;
   };
 
