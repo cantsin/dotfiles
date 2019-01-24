@@ -91,8 +91,8 @@ in
       '';
     };
 
-    ".config/i3/config".source = "${dotfiles}/i3config";
-    ".config/i3status/config".source = "${dotfiles}/i3statusconfig";
+    ".config/i3/config".source = "${dotfiles}/i3/config";
+    ".config/i3status/config".source = "${dotfiles}/i3status/config";
 
     ".emacs.d".source = pkgs.fetchFromGitHub {
       owner = "cantsin";
