@@ -14,7 +14,11 @@ in
     bc
     tmux
     ispell
+    direnv
     byobu
+    feh
+    evince
+    pass
   ];
 
   programs.git = {
@@ -52,7 +56,7 @@ in
       '';
     };
 
-   ".byobu/keybindings.tmux" = {
+    ".byobu/keybindings.tmux" = {
       text = ''
         set -g prefix C-o
         unbind-key -n C-a
@@ -62,7 +66,7 @@ in
       '';
     };
 
-   ".byobu/status" = {
+    ".byobu/status" = {
       text = ''
         screen_upper_left="color"
         screen_upper_right="color"
@@ -87,7 +91,14 @@ in
       '';
     };
 
-     ".config/i3/config".source = "${dotfiles}/i3config";
-     ".config/i3status/config".source = "${dotfiles}/i3statusconfig";
-   };
+    ".config/i3/config".source = "${dotfiles}/i3config";
+    ".config/i3status/config".source = "${dotfiles}/i3statusconfig";
+
+    ".emacs.d".source = pkgs.fetchFromGitHub {
+      owner = "cantsin";
+      repo = "dotemacs";
+      rev = "5e70c1cd39799c6dba3658d20844bdb985bf8259";
+      sha256 = "0fsi1k49amx245m9gfk042p7g9r3mr3wddjjmml2idh2n63xdbw5";
+    };
+  };
 }

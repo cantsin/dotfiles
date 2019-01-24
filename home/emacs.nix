@@ -1,15 +1,15 @@
 { pkgs ? import <nixpkgs> {} }: epkgs:
   let
     luaModeOverride = epkgs.lua-mode.override (args: {
-        melpaBuild = drv: args.melpaBuild (drv // {
-          src = pkgs.fetchFromGitHub {
-                owner = "immerrr";
-                repo = "lua-mode";
-                rev = "95c64bb5634035630e8c59d10d4a1d1003265743";
-                sha256 = "0cawb544qylifkvqads307n0nfqg7lvyphqbpbzr2xvr5iyi4901";
-            };
-        });
-     });
+      melpaBuild = drv: args.melpaBuild (drv // {
+        src = pkgs.fetchFromGitHub {
+          owner = "immerrr";
+          repo = "lua-mode";
+          rev = "95c64bb5634035630e8c59d10d4a1d1003265743";
+          sha256 = "0cawb544qylifkvqads307n0nfqg7lvyphqbpbzr2xvr5iyi4901";
+        };
+      });
+   });
   in
 (with epkgs.melpaPackages; [
   alchemist
