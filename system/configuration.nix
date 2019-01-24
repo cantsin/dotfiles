@@ -46,6 +46,7 @@
     fonts = with pkgs; [
       anonymousPro
       dejavu_fonts
+      font-awesome-ttf
       font-droid
       freefont_ttf
       google-fonts

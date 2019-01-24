@@ -157,8 +157,53 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+set $darkred     #cc241d
+set $red         #fb4934
+set $darkgreen   #98971a
+set $green       #b8bb26
+set $darkyellow  #d79921
+set $yellow      #fabd2f
+set $darkblue    #458588
+set $blue        #83a598
+set $darkmagenta #b16286
+set $magenta     #d3869b
+set $darkcyan    #689d6a
+set $cyan        #8ec07c
+set $darkwhite   #a89984
+set $white       #ebdbb2
+# Use custom colors for black
+set $black       #282828
+set $darkblack   #1d2021
+set $transparent #00000000
+
+# ! === gruvbox color scheme ===
+# *background: #1d2021
+# *foreground: #ebdbb2
+# ! Black + DarkGrey
+# *color0:  #282828
+# *color8:  #928374
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3status
+        colors {
+            statusline         $white
+            background         $transparent
+            separator          $transparent
+
+            #                          BORDER       BACKGROUND   TEXT
+            focused_workspace  $transparent $transparent $darkwhite
+            inactive_workspace $transparent $transparent $white
+            active_workspace   $transparent $transparent $white
+            urgent_workspace   $darkred     $darkred     $transparent
+            binding_mode       $darkred     $darkred     $transparent
+        }
 }
+
+# BORDER BACKGROUND TEXT INDICATOR CHILD_BORDER
+client.focused          $black      $black      $darkwhite  $darkblack  $darkblack
+client.unfocused        $black      $black      $white      $darkblack  $darkblack
+client.focused_inactive $black      $black      $white      $darkblack  $darkblack
+client.urgent           $darkred    $darkred    $black      $darkred    $darkred
+client.background $black
