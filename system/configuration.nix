@@ -34,6 +34,7 @@
     emacs
     zsh
     curl
+    gnumake
     networkmanagerapplet
     xlibs.xmodmap
     roxterm
