@@ -40,17 +40,30 @@
     firefox
   ];
 
+  fonts = {
+    enableFontDir = true;
+    enableGhostscriptFonts = true;
+    fonts = with pkgs; [
+      anonymousPro
+      dejavu_fonts
+      font-droid
+      freefont_ttf
+      google-fonts
+      inconsolata
+      liberation_ttf
+      powerline-fonts
+      source-code-pro
+      terminus_font
+      ttf_bitstream_vera
+      ubuntu_font_family
+    ];
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-  };
-
-  programs.zsh.ohMyZsh = {
-    enable = true;
-    plugins = [ "git" "docker" ];
-    theme = "agnoster";
   };
 
   # Enable the OpenSSH daemon.
@@ -87,7 +100,7 @@
       '';
     }
   ];
-  
+
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
 
@@ -100,6 +113,7 @@
     isNormalUser = true;
     uid = 1000;
     extraGroups = ["wheel" "networkmanager"];
+    shell = pkgs.zsh;
   };
 
   # This value determines the NixOS release with which your system is to be
