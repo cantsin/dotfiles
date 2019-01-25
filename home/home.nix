@@ -14,13 +14,17 @@ in
     evince
     feh
     file
+    firefox
     fortune
     htop
     ispell
     jq
+    networkmanagerapplet
     pass
     pstree
+    roxterm
     tmux
+    xlibs.xmodmap
     zip
   ];
 

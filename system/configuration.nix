@@ -32,12 +32,9 @@
   environment.systemPackages = with pkgs; [
     curl
     emacs
-    firefox
     git
     gnumake
-    networkmanagerapplet
-    roxterm
-    xlibs.xmodmap
+    xterm
     zsh
   ];
 
