@@ -12,4 +12,7 @@ home:
 	cp home/*.nix ~/.config/nixpkgs/
 	home-manager switch
 
+emacs:
+	echo "not implemented"
+
 all: system home
