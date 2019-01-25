@@ -12,6 +12,9 @@ home:
 	cp home/*.nix ~/.config/nixpkgs/
 	home-manager switch
 
+clean:
+	nix-collect-garbage
+
 emacs:
 	echo "not implemented"
 

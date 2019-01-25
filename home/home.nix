@@ -15,7 +15,6 @@ in
     tmux
     ispell
     direnv
-    byobu
     feh
     evince
     pass
@@ -29,18 +28,48 @@ in
   };
 
   programs.zsh.enable = true;
-  programs.zsh.initExtra = ''
-  '';
+  programs.zsh.sessionVariables = {
+    ZSH_TMUX_AUTOSTART = true;
+    ZSH_TMUX_AUTOCONNECT = false;
+  };
 
   programs.zsh.oh-my-zsh = {
     enable = true;
-    plugins = [ "git" "docker" ];
+    plugins = [ "git" "docker" "tmux" ];
     theme = "agnoster";
   };
 
   programs.emacs = {
     enable = true;
     extraPackages = import ./emacs.nix { inherit pkgs; };
+  };
+
+  programs.tmux = {
+    enable = true;
+    extraConfig = "
+      set -g default-terminal 'screen-256color'
+      set-option -g status-bg colour237
+      set-option -g status-fg yellow
+      set-option -g status-attr default
+      set-option -g pane-border-fg colour237
+      set-option -g pane-active-border-fg brightgreen
+      set-option -g message-bg colour237
+      set-option -g message-fg white
+      set-option -g display-panes-active-colour blue
+      set-option -g display-panes-colour brightred
+      set-window-option -g mode-keys emacs
+      set-window-option -g window-status-fg brightblue
+      set-window-option -g window-status-bg default
+      set-window-option -g window-status-attr dim
+      set-window-option -g window-status-current-fg white
+      set-window-option -g window-status-current-bg default
+      set-window-option -g window-status-bell-style fg=colour237,bg=red
+      set -g prefix C-o
+      unbind-key -n C-a
+      set -g mouse on
+      set -g status-left ''
+      set -g status-right ''
+    ";
   };
 
   services.network-manager-applet.enable = true;
@@ -53,27 +82,6 @@ in
         keysym Caps_Lock = Control_L
         add Lock = Caps_Lock
         add Control = Control_L
-      '';
-    };
-
-    ".byobu/keybindings.tmux" = {
-      text = ''
-        set -g prefix C-o
-        unbind-key -n C-a
-        set -g status-right '#(byobu-status tmux_right)'
-        set -g mouse on
-        set -g mouse-utf8 on
-      '';
-    };
-
-    ".byobu/status" = {
-      text = ''
-        screen_upper_left="color"
-        screen_upper_right="color"
-        screen_lower_left="color"
-        screen_lower_right="color"
-        tmux_left="logo"
-        tmux_right=""
       '';
     };
 
