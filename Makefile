@@ -4,9 +4,13 @@ system:
 	sudo cp system/configuration.nix /etc/nixos/configuration.nix
 	sudo nixos-rebuild --upgrade switch
 
-init-home:
+init:
 	nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
 	nix-channel --update
+	echo "Now log out and run 'make init-home-manager'"
+
+init-home-manager:
+	nix-shell '<home-manager>' -A install
 
 home:
 	cp home/*.nix ~/.config/nixpkgs/
