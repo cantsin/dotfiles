@@ -35,6 +35,27 @@ in
     ZSH_TMUX_AUTOSTART = true;
     ZSH_TMUX_AUTOCONNECT = false;
   };
+  programs.zsh.initExtra = ''
+    nixify() {
+      if [ ! -e ./.envrc ]; then
+        echo "use nix" > .envrc
+        direnv allow
+      fi
+      if [ ! -e default.nix ]; then
+        cat > default.nix <<'EOF'
+    with import <nixpkgs> {};
+    stdenv.mkDerivation {
+      name = "env";
+      buildInputs = [
+        bashInteractive
+      ];
+    }
+    EOF
+        emacs default.nix
+      fi
+    }
+    eval "$(direnv hook zsh)"
+  '';
 
   programs.zsh.oh-my-zsh = {
     enable = true;
