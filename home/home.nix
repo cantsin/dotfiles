@@ -8,16 +8,16 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    htop
-    fortune
-    pstree
     bc
-    tmux
-    ispell
     direnv
-    feh
     evince
+    feh
+    fortune
+    htop
+    ispell
     pass
+    pstree
+    tmux
   ];
 
   programs.git = {
@@ -29,6 +29,9 @@ in
 
   programs.zsh.enable = true;
   programs.zsh.sessionVariables = {
+    TERM = "xterm-256color";
+    ZSH_CUSTOM = "$HOME/.zsh-custom";
+    ZSH_THEME = "cantsin";
     ZSH_TMUX_AUTOSTART = true;
     ZSH_TMUX_AUTOCONNECT = false;
   };
@@ -36,7 +39,6 @@ in
   programs.zsh.oh-my-zsh = {
     enable = true;
     plugins = [ "git" "docker" "tmux" ];
-    theme = "agnoster";
   };
 
   programs.emacs = {
@@ -101,6 +103,7 @@ in
 
     ".config/i3/config".source = "${dotfiles}/i3/config";
     ".config/i3status/config".source = "${dotfiles}/i3status/config";
+    ".zsh-custom/themes/cantsin.zsh-theme".source = "${dotfiles}/zsh-custom/themes/cantsin.zsh-theme";
 
     ".emacs.d".source = pkgs.fetchFromGitHub {
       owner = "cantsin";

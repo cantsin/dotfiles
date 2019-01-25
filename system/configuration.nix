@@ -30,15 +30,15 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    git
-    emacs
-    zsh
     curl
+    emacs
+    firefox
+    git
     gnumake
     networkmanagerapplet
-    xlibs.xmodmap
     roxterm
-    firefox
+    xlibs.xmodmap
+    zsh
   ];
 
   fonts = {
