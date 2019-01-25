@@ -8,16 +8,20 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    arandr
     bc
     direnv
     evince
     feh
+    file
     fortune
     htop
     ispell
+    jq
     pass
     pstree
     tmux
+    zip
   ];
 
   programs.git = {
