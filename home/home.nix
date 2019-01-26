@@ -20,6 +20,7 @@ in
     ispell
     jq
     networkmanagerapplet
+    nix-prefetch-scripts
     nmap
     pass
     pstree
