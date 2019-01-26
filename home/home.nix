@@ -22,6 +22,7 @@ in
     networkmanagerapplet
     pass
     pstree
+    qsyncthingtray
     roxterm
     tmux
     xlibs.xmodmap
@@ -103,6 +104,8 @@ in
     ";
   };
 
+  services.syncthing.enable = true;
+  services.syncthing.tray = true;
   services.network-manager-applet.enable = true;
 
   home.file = {
