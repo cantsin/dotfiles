@@ -138,11 +138,9 @@ in
     ".config/i3status/config".source = "${dotfiles}/i3status/config";
     ".zsh-custom/themes/cantsin.zsh-theme".source = "${dotfiles}/zsh-custom/themes/cantsin.zsh-theme";
 
-    ".emacs.d".source = pkgs.fetchFromGitHub {
-      owner = "cantsin";
-      repo = "dotemacs";
-      rev = "5e70c1cd39799c6dba3658d20844bdb985bf8259";
-      sha256 = "0fsi1k49amx245m9gfk042p7g9r3mr3wddjjmml2idh2n63xdbw5";
+    ".emacs.d" = {
+      source = "${dotfiles}/emacs.d";
+      recursive = true;
     };
   };
 }
