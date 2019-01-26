@@ -20,6 +20,7 @@ in
     ispell
     jq
     networkmanagerapplet
+    nmap
     pass
     pstree
     qsyncthingtray
