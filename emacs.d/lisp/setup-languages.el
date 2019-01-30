@@ -156,5 +156,9 @@
                    "--harmony_sloppy"
                    "--harmony_tostring")))
 
+(use-package rust-mode
+  :defer t
+  :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
 (provide 'setup-languages)
 ;;; setup-languages.el ends here

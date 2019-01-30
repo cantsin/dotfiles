@@ -19,7 +19,4 @@ home:
 clean:
 	nix-collect-garbage
 
-emacs:
-	echo "not implemented"
-
 all: system home

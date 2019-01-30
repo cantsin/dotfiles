@@ -79,6 +79,8 @@
   # Enable sound.
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
