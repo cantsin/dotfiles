@@ -115,8 +115,7 @@
   :config (cantsin/markdown-config))
 
 (use-package avy
-  :bind (("C-c j" . avy-goto-word-or-subword-1)
-         ("s-y" . ace-window)))
+  :bind (("s-." . avy-goto-word-or-subword-1)))
 
 (defmacro def-pairs (pairs)
   `(progn

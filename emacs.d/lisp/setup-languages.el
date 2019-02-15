@@ -156,9 +156,20 @@
                    "--harmony_sloppy"
                    "--harmony_tostring")))
 
+(use-package racer-mode
+  :defer t)
+
 (use-package rust-mode
   :defer t
-  :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+  :init
+  (progn (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+         (add-hook 'racer-mode-hook #'eldoc-mode)
+         (add-hook 'racer-mode-hook #'company-mode)
+         (add-hook 'rust-mode-hook #'racer-mode)
+         (setq rust-format-on-save t)))
+
+(use-package nix-update
+  :defer t)
 
 (provide 'setup-languages)
 ;;; setup-languages.el ends here

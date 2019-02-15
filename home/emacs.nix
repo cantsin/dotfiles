@@ -16,6 +16,7 @@
   alchemist
   auto-yasnippet
   autodisass-llvm-bitcode
+  avy
   cargo
   cask
   caskxy
@@ -104,6 +105,7 @@
   puppet-mode
   reason-mode
   restclient
+  racer
   rust-mode
   s
   scala-mode
