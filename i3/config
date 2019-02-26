@@ -23,6 +23,9 @@ font pango:Liberation Mono 16
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# screenshots
+bindsym Print exec flameshot gui
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 

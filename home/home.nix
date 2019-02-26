@@ -18,7 +18,6 @@ in
     fortune
     htop
     ispell
-    jq
     networkmanagerapplet
     nix-prefetch-scripts
     nmap
@@ -106,6 +105,10 @@ in
     ";
   };
 
+  programs.jq.enable = true;
+
+  services.emacs.enable = true;
+  services.flameshot.enable = true;
   services.syncthing.enable = true;
   services.syncthing.tray = true;
   services.network-manager-applet.enable = true;
