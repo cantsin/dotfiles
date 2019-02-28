@@ -18,6 +18,7 @@ in
     fortune
     htop
     ispell
+    ledger
     networkmanagerapplet
     nix-prefetch-scripts
     nmap
