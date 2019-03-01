@@ -17,6 +17,11 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
 
+  networking.extraHosts =
+  ''
+    10.0.0.248 nas
+  '';
+
   # Select internationalisation properties.
   i18n = {
     consoleFont = "Lat2-Terminus16";
