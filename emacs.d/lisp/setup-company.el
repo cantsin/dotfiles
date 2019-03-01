@@ -12,7 +12,8 @@
   (define-key company-active-map (kbd "C-p")
     (lambda () (interactive) (company-complete-common-or-cycle -1)))
   (add-hook 'after-init-hook 'global-company-mode)
-  (setq company-idle-delay 1.5
+  (setq company-idle-delay 0.5
+        company-tooltip-align-annotations t
         company-minimum-prefix-length 2
         company-show-numbers t
         company-selection-wrap-around t

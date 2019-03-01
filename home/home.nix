@@ -10,6 +10,7 @@ in
   home.packages = with pkgs; [
     arandr
     bc
+    bind
     direnv
     evince
     feh
@@ -48,6 +49,7 @@ in
     ZSH_TMUX_AUTOCONNECT = false;
   };
   programs.zsh.initExtra = ''
+    command_not_found_handler() { command-not-found "$1" }
     nixify() {
       if [ ! -e ./.envrc ]; then
         echo "use nix" > .envrc
