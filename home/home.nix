@@ -116,6 +116,10 @@ in
   services.syncthing.enable = true;
   services.syncthing.tray = true;
   services.network-manager-applet.enable = true;
+  services.random-background = {
+    enable = true;
+    imageDirectory = "%h/.backgrounds";
+  };
 
   home.file = {
     ".Xmodmap" = {
@@ -149,6 +153,10 @@ in
     ".emacs.d" = {
       source = "${dotfiles}/emacs.d";
       recursive = true;
+    };
+
+    ".backgrounds" = {
+      source = "${dotfiles}/backgrounds";
     };
   };
 }
