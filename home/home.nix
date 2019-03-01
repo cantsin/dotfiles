@@ -25,6 +25,7 @@ in
     pass
     pstree
     qsyncthingtray
+    ripgrep
     roxterm
     tmux
     xlibs.xmodmap

@@ -63,6 +63,7 @@
   helm-idris
   helm-make
   helm-projectile
+  helm-rg
   helm-spaces
   helm-swoop
   ht
@@ -106,6 +107,7 @@
   reason-mode
   restclient
   racer
+  ripgrep
   rust-mode
   s
   scala-mode
