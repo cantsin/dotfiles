@@ -47,6 +47,7 @@ in
     ZSH_THEME = "cantsin";
     ZSH_TMUX_AUTOSTART = true;
     ZSH_TMUX_AUTOCONNECT = false;
+    BC_ENV_ARGS = "$HOME/.config/bc";
   };
   programs.zsh.initExtra = ''
     command_not_found_handler() { command-not-found "$1" }
@@ -148,6 +149,8 @@ in
 
     ".config/i3/config".source = "${dotfiles}/i3/config";
     ".config/i3status/config".source = "${dotfiles}/i3status/config";
+    ".config/bc".source = "${dotfiles}/bc";
+
     ".zsh-custom/themes/cantsin.zsh-theme".source = "${dotfiles}/zsh-custom/themes/cantsin.zsh-theme";
 
     ".emacs.d" = {
@@ -155,8 +158,6 @@ in
       recursive = true;
     };
 
-    ".backgrounds" = {
-      source = "${dotfiles}/backgrounds";
-    };
+    ".backgrounds".source = "${dotfiles}/backgrounds";
   };
 }
