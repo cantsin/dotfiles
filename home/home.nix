@@ -16,10 +16,8 @@ in
     feh
     file
     firefox
-    fortune
     htop
     ispell
-    ledger
     networkmanagerapplet
     nix-prefetch-scripts
     nmap
@@ -42,12 +40,12 @@ in
 
   programs.zsh.enable = true;
   programs.zsh.sessionVariables = {
+    BC_ENV_ARGS = "$HOME/.config/bc";
     TERM = "xterm-256color";
     ZSH_CUSTOM = "$HOME/.zsh-custom";
     ZSH_THEME = "cantsin";
     ZSH_TMUX_AUTOSTART = true;
     ZSH_TMUX_AUTOCONNECT = false;
-    BC_ENV_ARGS = "$HOME/.config/bc";
   };
   programs.zsh.initExtra = ''
     command_not_found_handler() { command-not-found "$1" }
