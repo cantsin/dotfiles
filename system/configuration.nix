@@ -54,6 +54,7 @@
       google-fonts
       inconsolata
       liberation_ttf
+      nerdfonts
       powerline-fonts
       source-code-pro
       terminus_font
