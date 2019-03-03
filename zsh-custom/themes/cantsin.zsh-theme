@@ -35,9 +35,11 @@ DIR_COLOR="242"
 GIT_CLEAN_COLOR="65"
 GIT_DIRTY_COLOR="100"
 VIRTUALENV_COLOR="114"
+WARNING_COLOR="88"
 
 typeset -aHg AGNOSTER_PROMPT_SEGMENTS=(
     prompt_status
+    prompt_context
     prompt_virtualenv
     prompt_dir
     prompt_git
@@ -86,6 +88,15 @@ prompt_end() {
   fi
   print -n "%{%f%}"
   CURRENT_BG=''
+}
+
+# Context: user@hostname (who am I and where am I)
+prompt_context() {
+  local user=`whoami`
+
+  if [[ -n "$SSH_CONNECTION" ]]; then
+    prompt_segment $WARNING_COLOR white "ssh: %m "
+  fi
 }
 
 # Git: branch/detached head, dirty status

@@ -18,18 +18,21 @@ in
     firefox
     htop
     ispell
-    networkmanagerapplet
     nix-prefetch-scripts
     nmap
     pass
     pstree
-    qsyncthingtray
     ripgrep
     roxterm
+    st
     tig
     tmux
     xlibs.xmodmap
     zip
+
+    # applets
+    networkmanagerapplet
+    qsyncthingtray
   ];
 
   programs.git = {
@@ -149,14 +152,11 @@ in
 
     ".config/i3status/config".source = "${dotfiles}/i3status/config";
     ".config/bc".source = "${dotfiles}/bc";
-
     ".zsh-custom/themes/cantsin.zsh-theme".source = "${dotfiles}/zsh-custom/themes/cantsin.zsh-theme";
-
+    ".backgrounds".source = "${dotfiles}/backgrounds";
     ".emacs.d" = {
       source = "${dotfiles}/emacs.d";
       recursive = true;
     };
-
-    ".backgrounds".source = "${dotfiles}/backgrounds";
   };
 }
