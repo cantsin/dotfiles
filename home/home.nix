@@ -109,8 +109,9 @@ in
     ";
   };
 
-  programs.jq.enable = true;
+  xsession.windowManager.i3 = import ./i3.nix;
 
+  programs.jq.enable = true;
   services.emacs.enable = true;
   services.flameshot.enable = true;
   services.syncthing.enable = true;
@@ -146,7 +147,6 @@ in
       '';
     };
 
-    ".config/i3/config".source = "${dotfiles}/i3/config";
     ".config/i3status/config".source = "${dotfiles}/i3status/config";
     ".config/bc".source = "${dotfiles}/bc";
 
