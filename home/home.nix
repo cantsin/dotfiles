@@ -7,6 +7,19 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  nixpkgs.overlays = [(self: super: {
+    st = super.st.override {
+      patches = builtins.map super.fetchurl [{
+        url = "https://st.suckless.org/patches/bold-is-not-bright/st-bold-is-not-bright-20190127-3be4cf1.diff";
+        sha256 = "1cpap2jz80n90izhq5fdv2cvg29hj6bhhvjxk40zkskwmjn6k49j";
+      }
+      {
+        url = "http://st.suckless.org/patches/anysize/st-anysize-0.8.1.diff";
+        sha256 = "03z5vvajfbkpxvvk394799l94nbd8xk57ijq17hpmq1g1p2xn641";
+      }];
+    };
+  })];
+
   home.packages = with pkgs; [
     arandr
     bc
@@ -24,7 +37,7 @@ in
     pstree
     ripgrep
     roxterm
-    st
+    (st.override { conf = builtins.readFile ./st-config.h; })
     tig
     tmux
     xlibs.xmodmap

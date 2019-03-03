@@ -13,7 +13,7 @@ init-home-manager:
 	nix-shell '<home-manager>' -A install
 
 home:
-	cp home/*.nix ~/.config/nixpkgs/
+	cp home/*.{nix,h} ~/.config/nixpkgs/
 	home-manager switch
 
 clean:
