@@ -127,8 +127,9 @@
                    (shell-command-to-string "agda-mode locate")))
     (error nil)))
 
-;; built-ins.
-(add-hook 'makefile-mode-hook 'indent-tabs-mode)
+(defun my-makefile-hook ()
+  (setq indent-tabs-mode t))
+(add-hook 'makefile-mode-hook 'my-makefile-hook)
 
 (use-package c-mode
   :defer t
