@@ -6,7 +6,7 @@
       ./hardware-configuration.nix
     ];
 
-  environment.variables.TERMINAL = "roxterm";
+  environment.variables.TERMINAL = "st";
   environment.variables.EDITOR = "emacs";
 
   # Use the systemd-boot EFI boot loader.

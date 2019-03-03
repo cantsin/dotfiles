@@ -36,7 +36,6 @@ in
     pass
     pstree
     ripgrep
-    roxterm
     (st.override { conf = builtins.readFile ./st-config.h; })
     tig
     tmux
@@ -148,21 +147,6 @@ in
         add Control = Control_L
       '';
     };
-
-    ".config/roxterm.sourceforge.net/Profiles/Default" = {
-      text = ''
-        [roxterm profile]
-        hide_menubar=1
-        show_add_tab_btn=0
-        always_show_tabs=0
-        colour_scheme=Tango
-        font=Liberation Mono 16
-        scrollbar_pos=0
-        scroll_on_output=0
-        scroll_on_keystroke=1
-      '';
-    };
-
     ".config/i3status/config".source = "${dotfiles}/i3status/config";
     ".config/bc".source = "${dotfiles}/bc";
     ".zsh-custom/themes/cantsin.zsh-theme".source = "${dotfiles}/zsh-custom/themes/cantsin.zsh-theme";
