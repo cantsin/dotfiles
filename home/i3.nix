@@ -20,6 +20,7 @@
   '';
   config = {
     modifier = "Mod4";
+    fonts = ["Liberation Mono 16"];
     bars = [
       {
         fonts = ["Liberation Mono 16"];
