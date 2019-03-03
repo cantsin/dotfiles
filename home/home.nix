@@ -157,7 +157,7 @@ in
       recursive = true;
     };
     ".local/share/fonts" = {
-      source = "${dotfiles}/fonts";
+      source = "${dotfiles}/triplicate";
       recursive = true;
     };
   };

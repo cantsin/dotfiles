@@ -1,0 +1,3 @@
+[submodule "triplicate"]
+	path = triplicate
+	url = ssh://git@nas:30001/resources/triplicate

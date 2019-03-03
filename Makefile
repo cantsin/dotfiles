@@ -11,6 +11,8 @@ init:
 
 init-home-manager:
 	nix-shell '<home-manager>' -A install
+	git submodule init
+	git submodule update
 
 home:
 	cp home/*.{nix,h} ~/.config/nixpkgs/
