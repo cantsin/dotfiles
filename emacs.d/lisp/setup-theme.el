@@ -84,9 +84,5 @@
             (moe-dark)
             (moe-theme-set-color 'orange)))
 
-;; (use-package powerline
-;;   :ensure t
-;;   :init (powerline-default-theme))
-
 (provide 'setup-theme)
 ;;; setup-theme.el ends here

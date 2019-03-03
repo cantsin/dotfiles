@@ -52,6 +52,7 @@ in
     enable = true;
     userName = "James Tranovich";
     userEmail = "jtranovich@gmail.com";
+    extraConfig.core = { editor = "emacs"; };
   };
 
   programs.zsh.enable = true;
@@ -153,6 +154,10 @@ in
     ".backgrounds".source = "${dotfiles}/backgrounds";
     ".emacs.d" = {
       source = "${dotfiles}/emacs.d";
+      recursive = true;
+    };
+    ".local/share/fonts" = {
+      source = "${dotfiles}/fonts";
       recursive = true;
     };
   };

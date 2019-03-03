@@ -99,7 +99,6 @@
   pdf-tools
   pkg-info
   popup
-  powerline
   pretty-mode
   prodigy
   projectile
