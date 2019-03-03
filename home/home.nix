@@ -26,6 +26,7 @@ in
     qsyncthingtray
     ripgrep
     roxterm
+    tig
     tmux
     xlibs.xmodmap
     zip
