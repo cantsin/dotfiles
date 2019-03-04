@@ -94,13 +94,14 @@
   services.xserver.windowManager.default = "i3";
   services.xserver.windowManager.i3.enable = true;
   services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.background = "black";
+  services.xserver.displayManager.lightdm.extraSeatDefaults = ''
+    greeter-hide-users=false
+  '';
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
 
   virtualisation.docker.enable = true;
 
