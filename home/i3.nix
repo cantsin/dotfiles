@@ -94,6 +94,7 @@
       "Print" = "exec flameshot gui";
       "Mod4+Return" = "exec i3-sensible-terminal";
       "Mod4+p" = "exec dmenu_run";
+      "Mod4+x" = "exec xscreensaver-command -lock";
       "Mod4+Shift+q" = "kill";
       "Mod4+h" = "split h";
       "Mod4+v" = "split v";

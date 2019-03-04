@@ -125,7 +125,13 @@ in
     ";
   };
 
-  xsession.windowManager.i3 = import ./i3.nix;
+  xsession = {
+    enable = true;
+    windowManager.i3 = import ./i3.nix;
+    initExtra = ''
+      xmodmap ~/.Xmodmap
+    '';
+  };
 
   programs.jq.enable = true;
   services.emacs.enable = true;
@@ -137,6 +143,8 @@ in
     enable = true;
     imageDirectory = "%h/.backgrounds";
   };
+
+  services.xscreensaver.enable = true;
 
   home.file = {
     ".Xmodmap" = {

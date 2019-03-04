@@ -55,7 +55,6 @@
       inconsolata
       liberation_ttf
       nerdfonts
-      powerline-fonts
       source-code-pro
       terminus_font
       ttf_bitstream_vera
@@ -95,17 +94,6 @@
   services.xserver.windowManager.default = "i3";
   services.xserver.windowManager.i3.enable = true;
   services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.desktopManager.default = "lightdm";
-  services.xserver.desktopManager.session =
-  [ {
-      manage = "desktop";
-      name = "lightdm";
-      start = ''
-        xmodmap ~/.Xmodmap
-        waitPID=$!
-      '';
-    }
-  ];
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
