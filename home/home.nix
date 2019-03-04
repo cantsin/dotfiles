@@ -32,6 +32,7 @@ in
     htop
     ispell
     nix-prefetch-scripts
+    nix-zsh-completions
     nmap
     pass
     pstree
