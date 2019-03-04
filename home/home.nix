@@ -111,7 +111,7 @@ in
       set-option -g display-panes-active-colour blue
       set-option -g display-panes-colour brightred
       set-window-option -g mode-keys emacs
-      set-window-option -g window-status-fg brightblue
+      set-window-option -g window-status-fg colour75
       set-window-option -g window-status-bg default
       set-window-option -g window-status-attr dim
       set-window-option -g window-status-current-fg white
