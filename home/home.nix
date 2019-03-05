@@ -37,7 +37,10 @@ in
     pass
     pstree
     ripgrep
-    (st.override { conf = builtins.readFile ./st-config.h; })
+    (st.override {
+      conf = builtins.readFile ./st-config.h;
+      patches = [./st-badweight.patch];
+    })
     tig
     tmux
     xlibs.xmodmap

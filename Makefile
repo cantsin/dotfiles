@@ -15,7 +15,7 @@ init-home-manager:
 	git submodule update
 
 home:
-	cp home/*.{nix,h} ~/.config/nixpkgs/
+	cp home/*.{nix,h,patch} ~/.config/nixpkgs/
 	home-manager switch
 
 clean:
