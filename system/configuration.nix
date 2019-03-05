@@ -103,6 +103,9 @@
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
 
+  # fix dconf/dbus errors
+  services.dbus.packages = with pkgs; [ gnome3.dconf ];
+
   virtualisation.docker.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

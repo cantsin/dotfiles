@@ -34,7 +34,10 @@ in
     nix-prefetch-scripts
     nix-zsh-completions
     nmap
-    pass
+    (pass.withExtensions (ext: with ext; [
+      pass-otp
+      pass-update
+    ]))
     pstree
     ripgrep
     (st.override {
@@ -138,6 +141,7 @@ in
   };
 
   programs.jq.enable = true;
+  programs.browserpass.enable = true;
   services.emacs.enable = true;
   services.flameshot.enable = true;
   services.syncthing.enable = true;
@@ -149,6 +153,10 @@ in
   };
 
   services.xscreensaver.enable = true;
+  services.screen-locker = {
+    enable = true;
+    lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
+  };
 
   home.file = {
     ".Xmodmap" = {
@@ -173,4 +181,7 @@ in
       recursive = true;
     };
   };
+
+  # Fix java applications
+  home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
 }
