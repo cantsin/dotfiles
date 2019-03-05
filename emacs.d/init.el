@@ -88,6 +88,12 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+;; font setup
+(add-to-list 'default-frame-alist '(font . "Triplicate T3c-16"))
+(set-face-attribute 'default t :font "Triplicate T3c-16")
+(set-face-attribute 'default nil :font "Triplicate T3c-16")
+(set-frame-font "Triplicate T3c-16" nil t)
+
 ;; set window title!
 (setq-default frame-title-format
               '(:eval

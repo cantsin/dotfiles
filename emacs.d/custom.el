@@ -28,7 +28,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Triplicate T3 Code Regular" :foundry "unknown" :slant normal :weight normal :height 180 :width normal))))
  '(flyspell-duplicate ((t (:inherit warning :foreground "pale turquoise" :weight bold))))
  '(markdown-blockquote-face ((t (:background "gray19" :foreground "#ff8700" :slant italic))))
  '(markdown-inline-code-face ((t (:background "gray19" :foreground "#5fafd7"))))
