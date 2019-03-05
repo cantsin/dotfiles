@@ -9,13 +9,18 @@ in
 
   nixpkgs.overlays = [(self: super: {
     st = super.st.override {
-      patches = builtins.map super.fetchurl [{
+      conf = builtins.readFile ./st-config.h;
+      patches = [./st-badweight.patch] ++ builtins.map super.fetchurl [{
         url = "https://st.suckless.org/patches/bold-is-not-bright/st-bold-is-not-bright-20190127-3be4cf1.diff";
         sha256 = "1cpap2jz80n90izhq5fdv2cvg29hj6bhhvjxk40zkskwmjn6k49j";
       }
       {
         url = "http://st.suckless.org/patches/anysize/st-anysize-0.8.1.diff";
         sha256 = "03z5vvajfbkpxvvk394799l94nbd8xk57ijq17hpmq1g1p2xn641";
+      }
+      {
+        url = "https://st.suckless.org/patches/visualbell/st-visualbell-0.8.1.diff";
+       sha256 = "1cr8vk8yjlpg6wj4p05lb37q111pih6rmrq2cmnmp1rkw3mnq1f4";
       }];
     };
   })];
@@ -40,10 +45,7 @@ in
     ]))
     pstree
     ripgrep
-    (st.override {
-      conf = builtins.readFile ./st-config.h;
-      patches = [./st-badweight.patch];
-    })
+    st
     tig
     tmux
     xlibs.xmodmap
