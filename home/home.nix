@@ -61,7 +61,20 @@ in
     enable = true;
     userName = "James Tranovich";
     userEmail = "jtranovich@gmail.com";
-    extraConfig.core = { editor = "emacs"; };
+    aliases = {
+      co = "checkout";
+    };
+    extraConfig = {
+      core = {
+        editor = "emacs";
+      };
+      pull = {
+        rebase = true;
+      };
+      rebase = {
+        autostash = true;
+      };
+    };
   };
 
   programs.zsh.enable = true;
