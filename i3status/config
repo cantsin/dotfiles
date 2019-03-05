@@ -10,6 +10,11 @@ order += "wireless _first_"
 order += "battery all"
 order += "tztime local"
 
+ethernet _first_ {
+        format_up = " %ip"
+        format_down = " down"
+}
+
 wireless _first_ {
         format_up = " %essid/%ip %quality"
         format_down = " down"
