@@ -1,13 +1,13 @@
 diff --git a/x.c b/x.c
-index c343ba2..1db7849 100644
+index 0422421..7bc41cf 100644
 --- a/x.c
 +++ b/x.c
-@@ -877,7 +877,7 @@ xloadfont(Font *f, FcPattern *pattern)
+@@ -881,7 +881,7 @@ xloadfont(Font *f, FcPattern *pattern)
  	    XftResultMatch)) {
  		if ((XftPatternGetInteger(f->match->pattern, "weight", 0,
  		    &haveattr) != XftResultMatch) || haveattr != wantattr) {
 -			f->badweight = 1;
 +			//f->badweight = 1;
- 			fputs("st: font weight does not match\n", stderr);
+ 			fputs("font weight does not match\n", stderr);
  		}
  	}
