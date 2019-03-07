@@ -1,6 +1,7 @@
 .PHONY: system home
 
 system:
+	sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
 	sudo cp system/configuration.nix /etc/nixos/configuration.nix
 	sudo nixos-rebuild --upgrade switch
 
