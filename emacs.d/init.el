@@ -52,7 +52,6 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (hl-line-mode t)
 (tooltip-mode nil)
-(add-to-list 'write-file-functions 'delete-trailing-whitespace)
 
 (set-default 'indent-tabs-mode nil)
 (set-default 'indicate-empty-lines t)

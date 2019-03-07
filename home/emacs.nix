@@ -131,6 +131,7 @@
   wgrep
   whitespace-cleanup-mode
   writegood-mode
+  ws-butler
   yaml-mode
   yasnippet
 ])

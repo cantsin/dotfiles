@@ -204,5 +204,9 @@
              (lambda (output)
                (replace-regexp-in-string "\033\\[[0-9]+[A-Z]" "" output)))
 
+(use-package ws-butler
+  :defer t
+  :config (ws-butler-global-mode))
+
 (provide 'setup-buffer)
 ;;; setup-buffer.el ends here
