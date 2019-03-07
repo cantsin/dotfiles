@@ -7,6 +7,7 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # patch suckless terminal
   nixpkgs.overlays = [(self: super: {
     st = super.st.override {
       conf = builtins.readFile ./st-config.h;
@@ -111,7 +112,7 @@ in
 
   programs.zsh.oh-my-zsh = {
     enable = true;
-    plugins = [ "git" "docker" "tmux" ];
+    plugins = ["git" "docker" "tmux"];
   };
 
   programs.emacs = {
@@ -197,6 +198,22 @@ in
     };
   };
 
-  # Fix java applications
+  systemd.user.services.syndaemon = {
+    Unit = {
+      Description = "syndaemon";
+      After = ["graphical-session-pre.target"];
+      PartOf = ["graphical-session.target"];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.xorg.xf86inputsynaptics}/bin/syndaemon -K -i 0.5";
+    };
+
+    Install = {
+      WantedBy = ["graphical-session.target"];
+    };
+  };
+
+  # fix java applications
   home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
-}
+} // (if builtins.pathExists ./secrets/defaults.nix then ./secrets/defaults.nix else {})
