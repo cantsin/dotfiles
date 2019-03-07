@@ -192,7 +192,7 @@ in
       recursive = true;
     };
     ".local/share/fonts" = {
-      source = "${dotfiles}/triplicate";
+      source = "${dotfiles}/fonts";
       recursive = true;
     };
   };
