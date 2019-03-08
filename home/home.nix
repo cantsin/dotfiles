@@ -28,6 +28,7 @@ in
 
   home.packages = with pkgs; [
     arandr
+    awscli
     bc
     bind
     direnv
