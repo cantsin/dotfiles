@@ -1,3 +1,6 @@
 [submodule "triplicate"]
 	path = fonts/triplicate
 	url = ssh://git@nas:30001/resources/triplicate
+[submodule "home/secrets"]
+	path = home/secrets
+	url = ssh://git@nas:30001/dev/nix-config-secrets

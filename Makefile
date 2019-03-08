@@ -16,7 +16,10 @@ init-home-manager:
 	git submodule update
 
 home:
+	rm ~/.config/nixpkgs/*.{nix,h,patch}
 	cp home/*.{nix,h,patch} ~/.config/nixpkgs/
+	mkdir -p ~/.config/nixpkgs/secrets
+	if [ -f home/secrets/default.nix ]; then cp home/secrets/default.nix ~/.config/nixpkgs/secrets; fi
 	home-manager switch
 
 clean:

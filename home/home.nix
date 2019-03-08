@@ -216,4 +216,4 @@ in
 
   # fix java applications
   home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
-} // (if builtins.pathExists ./secrets/defaults.nix then ./secrets/defaults.nix else {})
+} // (if builtins.pathExists ./secrets/default.nix then import ./secrets/default.nix {} else {})
