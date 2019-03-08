@@ -64,7 +64,7 @@
         '((sequence "TODO(t)" "PENDING(p)" "|" "DONE(d)")
           (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
           (sequence "|" "FUTURE(l)")
-          (sequence "|" "CANCELED(c)"))
+          (sequence "|" "CANCELED(c)" "BLOCKED(x)"))
   ;; set up shortcut for priorities
         org-agenda-custom-commands
         '(("p" "Agenda for all priorities" agenda ""
