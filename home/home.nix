@@ -28,7 +28,6 @@ in
 
   home.packages = with pkgs; [
     arandr
-    awscli
     bc
     bind
     direnv
@@ -41,10 +40,6 @@ in
     nix-prefetch-scripts
     nix-zsh-completions
     nmap
-    (pass.withExtensions (ext: with ext; [
-      pass-otp
-      pass-update
-    ]))
     pstree
     ripgrep
     st
