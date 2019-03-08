@@ -21,7 +21,7 @@ in
       }
       {
         url = "https://st.suckless.org/patches/visualbell/st-visualbell-0.8.1.diff";
-       sha256 = "1cr8vk8yjlpg6wj4p05lb37q111pih6rmrq2cmnmp1rkw3mnq1f4";
+        sha256 = "1cr8vk8yjlpg6wj4p05lb37q111pih6rmrq2cmnmp1rkw3mnq1f4";
       }];
     };
   })];
