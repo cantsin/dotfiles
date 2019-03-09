@@ -166,10 +166,9 @@ in
     imageDirectory = "%h/.backgrounds";
   };
 
-  services.xscreensaver.enable = true;
   services.screen-locker = {
     enable = true;
-    lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
+    lockCmd = "${pkgs.i3lock-fancy}/bin/i3lock-fancy -pf Triplicate-T3c";
   };
 
   home.file = {
