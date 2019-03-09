@@ -148,7 +148,7 @@ in
 
   xsession = {
     enable = true;
-    windowManager.i3 = import ./i3.nix;
+    windowManager.i3 = import ./i3.nix pkgs;
     initExtra = ''
       xmodmap ~/.Xmodmap
     '';

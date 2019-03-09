@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   enable = true;
   extraConfig = ''
     set $ws1 "α"
@@ -94,7 +94,7 @@
       "Print" = "exec flameshot gui";
       "Mod4+Return" = "exec i3-sensible-terminal";
       "Mod4+p" = "exec dmenu_run";
-      "Mod4+x" = "exec i3lock-fancy -pf Triplicate-T3c";
+      "Mod4+x" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pf Triplicate-T3c";
       "Mod4+Shift+q" = "kill";
       "Mod4+h" = "split h";
       "Mod4+v" = "split v";
