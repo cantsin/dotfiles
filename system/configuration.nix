@@ -102,6 +102,7 @@
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
+  services.xserver.libinput.disableWhileTyping = true;
 
   # fix dconf/dbus errors
   services.dbus.packages = with pkgs; [ gnome3.dconf ];

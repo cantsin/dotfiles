@@ -37,8 +37,6 @@ in
     firefox
     htop
     ispell
-    nix-prefetch-scripts
-    nix-zsh-completions
     nmap
     pstree
     ripgrep
@@ -47,6 +45,10 @@ in
     tmux
     xlibs.xmodmap
     zip
+
+    # convenience
+    nix-prefetch-scripts
+    nix-zsh-completions
 
     # applets
     networkmanagerapplet
@@ -191,22 +193,6 @@ in
     ".local/share/fonts" = {
       source = "${dotfiles}/fonts";
       recursive = true;
-    };
-  };
-
-  systemd.user.services.syndaemon = {
-    Unit = {
-      Description = "syndaemon";
-      After = ["graphical-session-pre.target"];
-      PartOf = ["graphical-session.target"];
-    };
-
-    Service = {
-      ExecStart = "${pkgs.xorg.xf86inputsynaptics}/bin/syndaemon -K -i 0.5";
-    };
-
-    Install = {
-      WantedBy = ["graphical-session.target"];
     };
   };
 
