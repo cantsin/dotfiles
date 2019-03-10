@@ -79,7 +79,6 @@ in
   programs.zsh.enable = true;
   programs.zsh.sessionVariables = {
     BC_ENV_ARGS = "$HOME/.config/bc";
-    TERM = "xterm-256color";
     ZSH_CUSTOM = "$HOME/.zsh-custom";
     ZSH_THEME = "cantsin";
     ZSH_TMUX_AUTOSTART = true;
@@ -198,5 +197,7 @@ in
   # fix java applications
   home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
 
-  imports = if builtins.pathExists ./secrets/default.nix then [./secrets/default.nix] else [];
+  imports = [./experimental.nix] ++ (
+    if builtins.pathExists ./secrets/default.nix then [./secrets/default.nix] else []
+  );
 }
