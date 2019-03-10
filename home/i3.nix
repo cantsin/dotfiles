@@ -93,7 +93,7 @@
     keybindings = {
       "Print" = "exec flameshot gui";
       "Mod4+Return" = "exec i3-sensible-terminal";
-      "Mod4+p" = "exec dmenu_run -fn 'Triplicate T3c-14'  -sb '#ff8700' -sf '#1d2021'";
+      "Mod4+p" = "exec dmenu_run -fn 'Triplicate T3c-16'  -sb '#ff8700' -sf '#1d2021'";
       "Mod4+x" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pf Triplicate-T3c";
       "Mod4+Shift+q" = "kill";
       "Mod4+h" = "split h";
