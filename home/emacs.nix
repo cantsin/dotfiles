@@ -87,6 +87,7 @@
   multiple-cursors
   nix-mode
   nix-update
+  notmuch
   nodejs-repl
   ocodo-svg-modelines
   org-bullets

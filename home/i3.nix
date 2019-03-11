@@ -87,9 +87,10 @@
       };
       background = "$black";
     };
-    window.commands = [{
-      criteria = { class = "splashy"; }; command = "floating enable";
-    }];
+    window.commands = [
+      { criteria = { class = "splashy"; }; command = "floating enable"; }
+      { criteria = { workspace = "κ"; }; command = "layout stacked"; }
+    ];
     keybindings = {
       "Print" = "exec flameshot gui";
       "Mod4+Return" = "exec i3-sensible-terminal";
