@@ -114,6 +114,12 @@
   :init (cantsin/markdown-init)
   :config (cantsin/markdown-config))
 
+;; Github README.mds.
+(use-package markdown-mode
+  :defer t
+  :ensure t
+  :init (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode)))
+
 (use-package avy
   :bind (("s-." . avy-goto-word-or-subword-1)))
 
@@ -207,6 +213,13 @@
 (use-package ws-butler
   :defer t
   :config (ws-butler-global-mode))
+
+(use-package whitespace
+  :ensure t
+  :defer t
+  :init (setq whitespace-style '(face trailing lines-tail tabs)
+              whitespace-line-column 80
+              global-whitespace-cleanup-mode t))
 
 (provide 'setup-buffer)
 ;;; setup-buffer.el ends here
