@@ -20,9 +20,11 @@
   "Set up dired."
   (use-package stripe-buffer
     :defer t
-    :ensure t)
+    :ensure t
+    :config (progn
+              (set-face-background 'stripe-hl-line "dark violet")
+              (set-face-foreground 'stripe-hl-line "white")))
   (add-hook 'dired-mode-hook 'stripe-listify-buffer)
-
   (define-key dired-mode-map
     [remap beginning-of-buffer] 'dired-back-to-top)
   (define-key dired-mode-map
