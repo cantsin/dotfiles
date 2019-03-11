@@ -53,6 +53,9 @@ in
     # applets
     networkmanagerapplet
     qsyncthingtray
+
+    # notification system
+    notify-osd-customizable
   ];
 
   programs.git = {
@@ -178,6 +181,14 @@ in
         keysym Caps_Lock = Control_L
         add Lock = Caps_Lock
         add Control = Control_L
+      '';
+    };
+    ".notify-osd" = {
+      text = ''
+        text-title-size = 150%
+        text-body-size = 150%
+        bubble-width = 480px
+        bubble-close-on-click = 1
       '';
     };
     ".config/i3status/config".source = "${dotfiles}/i3status/config";
