@@ -80,6 +80,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [pkgs.hplip];
+  # http://localhost:631/ -- HP Color LaserJet MFP M477fdw
 
   # Enable sound.
   # sound.enable = true;
