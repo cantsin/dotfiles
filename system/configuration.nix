@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-    ];
+    ] ++ (if builtins.pathExists ./system-vpn.nix then [./system-vpn.nix] else []);
 
   environment.variables.TERMINAL = "st";
   environment.variables.EDITOR = "emacs";

@@ -3,6 +3,9 @@
 system:
 	sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
 	sudo cp system/configuration.nix /etc/nixos/configuration.nix
+	if [ -f home/secrets/default.nix ]; then \
+		sudo cp home/secrets/system-*.nix /etc/nixos/; \
+	fi
 	sudo nixos-rebuild --upgrade switch
 
 init:
