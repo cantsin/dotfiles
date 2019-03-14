@@ -21,41 +21,7 @@
   config = {
     modifier = "Mod4";
     fonts = ["Triplicate T3c" "Liberation Mono 16"];
-    bars = [
-      {
-        fonts = ["Triplicate T3c" "Liberation Mono 16"];
-        colors = {
-          statusline = "$white";
-          background = "$transparent";
-          separator = "$transparent";
-          focusedWorkspace = {
-            border = "$transparent";
-            background = "$transparent";
-            text = "$white";
-          };
-          inactiveWorkspace = {
-            border = "$transparent";
-            background = "$transparent";
-            text = "$darkwhite";
-          };
-          activeWorkspace = {
-            border = "$transparent";
-            background = "$transparent";
-            text = "$darkwhite";
-          };
-          urgentWorkspace = {
-            border = "$darkred";
-            background = "$darkred";
-            text = "$transparent";
-          } ;
-          bindingMode = {
-            border = "$darkred";
-            background = "$darkred";
-            text = "$transparent";
-          };
-        };
-      }
-    ];
+    bars = [];
     colors = {
       focused = {
         border = "$black";
@@ -138,5 +104,8 @@
       "Mod4+Shift+9" = "move container to workspace $ws9";
       "Mod4+Shift+0" = "move container to workspace $ws10";
     };
+    startup = [
+      { command = "systemctl --user restart polybar"; always = true; notification = false; }
+    ];
   };
 }

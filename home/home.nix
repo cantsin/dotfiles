@@ -167,6 +167,7 @@ in
     enable = true;
     imageDirectory = "%h/.backgrounds";
   };
+  services.polybar = import ./polybar.nix pkgs;
 
   services.screen-locker = {
     enable = true;
@@ -191,7 +192,6 @@ in
         bubble-close-on-click = 1
       '';
     };
-    ".config/i3status/config".source = "${dotfiles}/i3status/config";
     ".config/bc".source = "${dotfiles}/bc";
     ".zsh-custom/themes/cantsin.zsh-theme".source = "${dotfiles}/zsh-custom/themes/cantsin.zsh-theme";
     ".backgrounds".source = "${dotfiles}/backgrounds";
