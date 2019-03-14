@@ -1,4 +1,6 @@
 { pkgs, ... }:
+let alpha = "99";
+in
 {
   enable = true;
   package = pkgs.polybar.override {
@@ -12,13 +14,15 @@
       darkred = "#cc241d";
       darkwhite = "#a89984";
       white = "#ebdbb2";
-      black = "#282828";
-      darkblack = "#1d2021";
-      transparent = "#00000000";
+      transparent = "#${alpha}000000";
+    };
+    "settings" = {
+       pseudo-transparency = true;
     };
     "bar/status" = {
        bottom = true;
        width = "100%";
+       background = "\${color.transparent}";
        font-0 = "Triplicate T3c:pixelsize=10";
        font-1 = "FuraCode Nerd Font:pixelsize=10:style=Light";
        modules-left = "i3";
@@ -32,6 +36,8 @@
        tray-maxsize = 24;
        tray-position = "right";
        tray-background = "\${color.transparent}";
+       line-color = "\${color.transparent}";
+       line-size = 2;
        # wm-restack = "i3";
        # override-redirect = true;
     };
@@ -59,7 +65,7 @@
     };
     "module/github" = {
       type = "internal/github";
-      token = "\${env:GITHUB_ACCESS_TOKEN}";
+      token = "\${file:~/.github-access-token}";
       format = "<label>";
       label = " %notifications%";
       label-foreground = "\${color.darkwhite}";

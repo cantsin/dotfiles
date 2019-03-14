@@ -2,6 +2,7 @@
 
 let
   dotfiles = "/home/james/.dotfiles";
+  sysconfig = (import <nixpkgs/nixos> {}).config;
 in
 {
   # Let Home Manager install and manage itself.
@@ -165,7 +166,7 @@ in
   services.network-manager-applet.enable = true;
   services.random-background = {
     enable = true;
-    imageDirectory = "%h/.backgrounds";
+    imageDirectory = "%h/.backgrounds/${sysconfig.networking.hostName}";
   };
   services.polybar = import ./polybar.nix pkgs;
 
