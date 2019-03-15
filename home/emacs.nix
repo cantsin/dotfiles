@@ -135,4 +135,6 @@
   ws-butler
   yaml-mode
   yasnippet
+] ++ [
+  epkgs.orgPackages.org-plus-contrib
 ])

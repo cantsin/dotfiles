@@ -28,6 +28,7 @@
   (use-package stripe-buffer
     :defer t
     :ensure t)
+  (require 'org-notmuch)
   (add-hook 'org-mode-hook
             (lambda () (org-bullets-mode 1)))
   (add-hook 'org-after-todo-state-change-hook
@@ -85,7 +86,8 @@
          ("C-c c" . org-capture)
          ("C-c a" . org-agenda)
          ("C-c b" . org-iswitchb)
-         ("C-c e" . org-archive-subtree))
+         ("C-c e" . org-archive-subtree)
+         ("C-c l" . org-store-link))
   :init (cantsin/org-init)
   :config (cantsin/org-config))
 
