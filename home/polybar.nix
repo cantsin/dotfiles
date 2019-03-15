@@ -55,6 +55,7 @@ in
       interface = "eno1";
       format-connected = "<label-connected>";
       label-connected = " %local_ip%";
+      label-connected-foreground = "\${color.green}";
     };
     "module/mail" = {
       type = "custom/script";
