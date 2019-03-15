@@ -52,7 +52,6 @@ in
 
     # applets
     networkmanagerapplet
-    qsyncthingtray
 
     # notification system
     notify-osd-customizable
@@ -167,7 +166,8 @@ in
   services.emacs.enable = true;
   services.flameshot.enable = true;
   services.syncthing.enable = true;
-  services.syncthing.tray = true;
+  # qsyncthingtray is currently broken. in the meantime, go to http://127.0.0.1:8384/ directly
+  # services.syncthing.tray = true;
   services.network-manager-applet.enable = true;
   services.random-background = {
     enable = true;
