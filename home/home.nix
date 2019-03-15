@@ -2,7 +2,6 @@
 
 let
   dotfiles = "/home/james/.dotfiles";
-  sysconfig = (import <nixpkgs/nixos> {}).config;
 in
 {
   # Let Home Manager install and manage itself.
@@ -169,10 +168,6 @@ in
   # qsyncthingtray is currently broken. in the meantime, go to http://127.0.0.1:8384/ directly
   # services.syncthing.tray = true;
   services.network-manager-applet.enable = true;
-  services.random-background = {
-    enable = true;
-    imageDirectory = "%h/.backgrounds/${sysconfig.networking.hostName}";
-  };
   services.polybar = import ./polybar.nix pkgs;
 
   services.screen-locker = {
@@ -214,7 +209,10 @@ in
   # fix java applications
   home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
 
-  imports = [./experimental.nix] ++ (
+  imports = [
+    ./background.nix
+    ./experimental.nix
+  ] ++ (
     if builtins.pathExists ./secrets/default.nix then [./secrets/default.nix] else []
   );
 }
