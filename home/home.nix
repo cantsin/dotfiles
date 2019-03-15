@@ -35,7 +35,6 @@ in
     evince
     feh
     file
-    firefox
     htop
     ispell
     nmap
@@ -147,6 +146,12 @@ in
       set -g status-left ''
       set -g status-right ''
     ";
+  };
+
+  programs.firefox = {
+    enable = true;
+    # enableAdobeFlash = true; # blocked until 32.0.0.156 gets in
+    enableGoogleTalk = true;
   };
 
   xsession = {
