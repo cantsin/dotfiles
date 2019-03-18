@@ -115,7 +115,7 @@ in
 
   programs.emacs = {
     enable = true;
-    extraPackages = import ./emacs.nix { inherit pkgs; };
+    extraPackages = import ./emacs-packages.nix { inherit pkgs; };
   };
 
   programs.tmux = {

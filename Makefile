@@ -21,6 +21,7 @@ init-home-manager:
 home:
 	rm ~/.config/nixpkgs/*.{nix,h,patch}
 	cp home/*.{nix,h,patch} ~/.config/nixpkgs/
+	cp emacs.d/packages.nix ~/.config/nixpkgs/emacs-packages.nix
 	if [ -f home/secrets/default.nix ]; then \
 		mkdir -p ~/.config/nixpkgs/secrets; \
 		cp home/secrets/default.nix ~/.config/nixpkgs/secrets; \
