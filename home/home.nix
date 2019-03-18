@@ -148,7 +148,7 @@ in
 
   programs.firefox = {
     enable = true;
-    # enableAdobeFlash = true; # blocked until 32.0.0.156 gets in
+    enableAdobeFlash = true; # only for https://anywhere.convorelay.com/
     enableGoogleTalk = true;
   };
 
