@@ -169,6 +169,13 @@ in
   # services.syncthing.tray = true;
   services.network-manager-applet.enable = true;
   services.polybar = import ./polybar.nix pkgs;
+  services.redshift = {
+    enable = true;
+    tray = true;
+    latitude = "37.733795";
+    longitude = "-122.446747";
+    provider = "manual";
+  };
 
   services.screen-locker = {
     enable = true;
