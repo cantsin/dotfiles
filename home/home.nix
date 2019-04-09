@@ -82,8 +82,8 @@ in
     BC_ENV_ARGS = "$HOME/.config/bc";
     ZSH_CUSTOM = "$HOME/.zsh-custom";
     ZSH_THEME = "cantsin";
-    ZSH_TMUX_AUTOSTART = 1;
-    ZSH_TMUX_AUTOCONNECT = 0;
+    ZSH_TMUX_AUTOSTART = "true";
+    ZSH_TMUX_AUTOCONNECT = "false";
   };
   programs.zsh.initExtra = ''
     command_not_found_handler() { command-not-found "$1" }
