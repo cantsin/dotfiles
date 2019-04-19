@@ -54,7 +54,7 @@
       background = "$black";
     };
     window.commands = [
-      { criteria = { class = "splashy"; }; command = "floating enable"; }
+      { criteria = { class = "splash"; }; command = "floating enable"; }
       { criteria = { workspace = "κ"; }; command = "layout stacked"; }
     ];
     keybindings = {
