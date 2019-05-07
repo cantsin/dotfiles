@@ -39,6 +39,7 @@
     emacs
     git
     gnumake
+    rsync
     xterm
     zsh
   ];
