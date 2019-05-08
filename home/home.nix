@@ -43,6 +43,7 @@ in
     tig
     tmux
     xlibs.xmodmap
+    zeal
     zip
 
     # convenience
