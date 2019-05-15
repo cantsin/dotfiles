@@ -34,6 +34,7 @@ in
     evince
     feh
     file
+    gitAndTools.hub
     htop
     ispell
     nmap
