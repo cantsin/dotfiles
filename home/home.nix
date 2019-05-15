@@ -123,21 +123,15 @@ in
     enable = true;
     extraConfig = "
       set -g default-terminal 'screen-256color'
-      set-option -g status-bg colour237
-      set-option -g status-fg yellow
-      set-option -g status-attr default
-      set-option -g pane-border-fg colour237
-      set-option -g pane-active-border-fg brightgreen
-      set-option -g message-bg colour237
-      set-option -g message-fg white
+      set-option -g status-style fg=yellow,bg=colour237,default
+      set-option -g pane-border-style fg=colour237
+      set-option -g pane-active-border-style fg=brightgreen
+      set-option -g message-style fg=white,bg=colour237
       set-option -g display-panes-active-colour blue
       set-option -g display-panes-colour brightred
       set-window-option -g mode-keys emacs
-      set-window-option -g window-status-fg colour75
-      set-window-option -g window-status-bg default
-      set-window-option -g window-status-attr dim
-      set-window-option -g window-status-current-fg white
-      set-window-option -g window-status-current-bg default
+      set-window-option -g window-status-style fg=colour75,bg=default
+      set-window-option -g window-status-current-style fg=white,bg=default,dim
       set-window-option -g window-status-bell-style fg=colour237,bg=red
       set -g prefix C-o
       unbind-key -n C-a
