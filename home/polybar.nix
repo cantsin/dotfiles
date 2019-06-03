@@ -4,6 +4,7 @@ let
   sysconfig = (import <nixpkgs/nixos> {}).config;
   hostname = sysconfig.networking.hostName;
   displayIsLarge = builtins.elem hostname ["zen"];
+  isLaptop = builtins.elem hostname ["mu" "satori"];
   fontsize = if displayIsLarge then "8" else "10";
   height = if displayIsLarge then 36 else 48;
 in
@@ -26,14 +27,14 @@ in
        pseudo-transparency = true;
     };
     "bar/status" = {
-       monitor = if displayIsLarge then "DVI-D-0" else "eDP-1";
+       monitor = if isLaptop then "eDP-1" else "DVI-D-0";
        bottom = true;
        width = "100%";
        background = "\${color.transparent}";
        font-0 = "Triplicate T3c:pixelsize=${fontsize}";
        font-1 = "FuraCode Nerd Font:pixelsize=${fontsize}:style=Light";
        modules-left = "i3";
-       modules-center = "mail github";
+       modules-center = if hostname == "satori" then "github" else "github mail";
        modules-right = "wlan eth battery date";
        height = height;
        dpi = 192;

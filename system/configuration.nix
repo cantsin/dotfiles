@@ -3,12 +3,21 @@
 let
   hostName = (import ./hostname.nix).hostName;
   useNvidia = builtins.elem hostName ["zen"];
+  secureBoot = builtins.elem hostName ["satori"];
 in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ] ++ (if builtins.pathExists ./system-vpn.nix then [./system-vpn.nix] else []);
+
+  boot.initrd.luks.devices = if secureBoot then [
+    {
+      name = "root";
+      device = "/dev/nvme0n1p2";
+      preLVM = true;
+    }
+  ] else [];
 
   environment.variables.TERMINAL = "st";
   environment.variables.EDITOR = "emacs";
