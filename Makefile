@@ -2,16 +2,25 @@
 
 system:
 	sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
-	sudo cp system/configuration.nix /etc/nixos/configuration.nix
+	sudo cp system/configuration.nix /etc/nixos/
+	if [ ! -f system/hostname.nix ]; then \
+		echo "Hostname is required."; \
+		exit 1; \
+	fi
+	sudo cp system/hostname.nix /etc/nixos/
 	if [ -f home/secrets/default.nix ]; then \
 		sudo cp home/secrets/system-*.nix /etc/nixos/; \
 	fi
 	sudo nixos-rebuild --upgrade switch
 
+hostname:
+	echo "{ hostName = \"${HOSTNAME}\"; }" > system/hostname.nix
+
+
 init:
 	nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
 	nix-channel --update
-	echo "Now log out and run 'make init-home-manager'"
+	echo "Add the hostname, log out and run 'make init-home-manager'"
 
 init-home-manager:
 	nix-shell '<home-manager>' -A install
