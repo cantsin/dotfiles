@@ -4,7 +4,7 @@ let
   sysconfig = (import <nixpkgs/nixos> {}).config;
   hostname = sysconfig.networking.hostName;
   displayIsLarge = builtins.elem hostname ["zen"];
-  fontsize = if displayIsLarge then "10" else "8";
+  fontsize = if displayIsLarge then "8" else "10";
   height = if displayIsLarge then 36 else 48;
 in
 {
