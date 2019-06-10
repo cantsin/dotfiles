@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 
+let
+  hostName = (import ./hostname.nix).hostName;
+  useNvidia = builtins.elem hostName ["zen"];
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -13,7 +17,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = (import ./hostname.nix).hostName;
+  networking.hostName = hostName;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
 
@@ -111,6 +115,10 @@
 
   # fix dconf/dbus errors
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
+
+  # conditional nvidia support
+  nixpkgs.config.allowUnfree = useNvidia;
+  services.xserver.videoDrivers = if useNvidia then ["nvidia"] else [];
 
   virtualisation.docker.enable = true;
 

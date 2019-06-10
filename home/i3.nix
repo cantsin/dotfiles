@@ -103,6 +103,8 @@
       "Mod4+Shift+8" = "move container to workspace $ws8";
       "Mod4+Shift+9" = "move container to workspace $ws9";
       "Mod4+Shift+0" = "move container to workspace $ws10";
+      "Mod4+Right" = "move workspace to output right";
+      "Mod4+Left" = "move workspace to output left";
     };
     startup = [
       { command = "systemctl --user restart polybar"; always = true; notification = false; }

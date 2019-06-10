@@ -20,7 +20,7 @@ hostname:
 init:
 	nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
 	nix-channel --update
-	echo "Add the hostname, log out and run 'make init-home-manager'"
+	echo "Now log out and run 'make init-home-manager'"
 
 init-home-manager:
 	nix-shell '<home-manager>' -A install
