@@ -1,5 +1,11 @@
 { pkgs, ... }:
-let alpha = "99";
+let
+  alpha = "99";
+  sysconfig = (import <nixpkgs/nixos> {}).config;
+  hostname = sysconfig.networking.hostName;
+  displayIsLarge = builtins.elem hostname ["zen"];
+  fontsize = if displayIsLarge then "10" else "8";
+  height = if displayIsLarge then 36 else 48;
 in
 {
   enable = true;
@@ -20,15 +26,16 @@ in
        pseudo-transparency = true;
     };
     "bar/status" = {
+       monitor = if displayIsLarge then "DVI-D-0" else "eDP-1";
        bottom = true;
        width = "100%";
        background = "\${color.transparent}";
-       font-0 = "Triplicate T3c:pixelsize=10";
-       font-1 = "FuraCode Nerd Font:pixelsize=10:style=Light";
+       font-0 = "Triplicate T3c:pixelsize=${fontsize}";
+       font-1 = "FuraCode Nerd Font:pixelsize=${fontsize}:style=Light";
        modules-left = "i3";
        modules-center = "mail github";
        modules-right = "wlan eth battery date";
-       height = 48;
+       height = height;
        dpi = 192;
        underline-size = 2;
        separator = "  ";
