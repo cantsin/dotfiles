@@ -9,7 +9,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-    ] ++ (if builtins.pathExists ./system-vpn.nix then [./system-vpn.nix] else []);
+    ] ++ (builtins.filter builtins.pathExists [./system-vpn.nix ./system-hosts.nix]);
 
   boot.initrd.luks.devices = if secureBoot then [
     {
@@ -29,11 +29,6 @@ in
   networking.hostName = hostName;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
-
-  networking.extraHosts =
-  ''
-    10.0.0.248 nas
-  '';
 
   # Select internationalisation properties.
   i18n = {
