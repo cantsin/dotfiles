@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+  useRemacs = true;
   dotfiles = "/home/james/.dotfiles";
 in
 {
@@ -56,7 +57,8 @@ in
 
     # notification system
     notify-osd-customizable
-  ];
+  ] ++
+  (if useRemacs then [ (import ./remacs/build.nix {}) ] else []);
 
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
@@ -116,7 +118,7 @@ in
   };
 
   programs.emacs = {
-    enable = true;
+    enable = !useRemacs;
     extraPackages = import ./emacs-packages.nix { inherit pkgs; };
   };
 
@@ -158,7 +160,7 @@ in
 
   programs.jq.enable = true;
   programs.browserpass.enable = true;
-  services.emacs.enable = true;
+  services.emacs.enable = !useRemacs;
   services.flameshot.enable = true;
   services.syncthing.enable = true;
   # qsyncthingtray is currently broken. in the meantime, go to http://127.0.0.1:8384/ directly
