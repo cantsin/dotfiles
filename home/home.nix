@@ -160,7 +160,17 @@ in
 
   programs.jq.enable = true;
   programs.browserpass.enable = true;
+
   services.emacs.enable = !useRemacs;
+
+  services.gpg-agent = {
+    enable = true;
+    extraConfig = ''
+      allow-emacs-pinentry
+      allow-loopback-pinentry
+    '';
+  };
+
   services.flameshot.enable = true;
   services.syncthing.enable = true;
   # qsyncthingtray is currently broken. in the meantime, go to http://127.0.0.1:8384/ directly
