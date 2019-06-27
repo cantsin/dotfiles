@@ -9,7 +9,14 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-    ] ++ (builtins.filter builtins.pathExists [./system-vpn.nix ./system-hosts.nix]);
+    ] ++ (
+    builtins.filter builtins.pathExists
+      [
+        ./system-vpn.nix
+        ./system-hosts.nix
+        ./system-experimental.nix
+      ]
+    );
 
   boot.initrd.luks.devices = if secureBoot then [
     {
