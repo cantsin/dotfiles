@@ -78,6 +78,10 @@ in
       rebase = {
         autostash = true;
       };
+      sendemail = {
+        confirm = "auto";
+        smtpserver = "/home/james/.nix-profile/bin/msmtp";
+      };
     };
   };
 
