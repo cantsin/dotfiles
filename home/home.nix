@@ -80,7 +80,10 @@ in
       };
       sendemail = {
         confirm = "auto";
-        smtpserver = "/home/james/.nix-profile/bin/msmtp";
+        smtpserver = "/home/james/.nix-profile/bin/SMTP";
+      };
+      github = {
+        user = "cantsin";
       };
     };
   };
