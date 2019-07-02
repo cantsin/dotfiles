@@ -127,6 +127,7 @@ in
   services.xserver.videoDrivers = if useNvidia then ["nvidia"] else [];
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.james = {
@@ -135,6 +136,7 @@ in
     extraGroups = ["wheel" "networkmanager" "docker"];
     shell = pkgs.zsh;
   };
+  users.extraGroups.vboxusers.members = [ "james" ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
