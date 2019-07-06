@@ -129,6 +129,11 @@ in
   virtualisation.docker.enable = true;
   virtualisation.virtualbox.host.enable = true;
 
+  services.nixops-dns = {
+    enable = true;
+    user = "james";
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.james = {
     isNormalUser = true;
@@ -142,7 +147,7 @@ in
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.09"; # Did you read the comment?
+  system.stateVersion = "19.03"; # Did you read the comment?
 
   system.autoUpgrade.enable = true;
 }
