@@ -1,28 +1,28 @@
 { remacsSource ? ./remacs, local ? true }:
 
-with import <nixpkgs> {};
+with import <nixpkgs> { };
 
-let src = fetchFromGitHub {
-      owner = "mozilla";
-      repo = "nixpkgs-mozilla";
-      rev = "50bae918794d3c283aeb335b209efd71e75e3954";
-      sha256 = "07b7hgq5awhddcii88y43d38lncqq9c8b2px4p93r5l7z0phv89d";
-      # date = 2019-04-02T09:39:52+02:00;
-   };
-in
+let
+  src = fetchFromGitHub {
+    owner = "mozilla";
+    repo = "nixpkgs-mozilla";
+    rev = "50bae918794d3c283aeb335b209efd71e75e3954";
+    sha256 = "07b7hgq5awhddcii88y43d38lncqq9c8b2px4p93r5l7z0phv89d";
+    # date = 2019-04-02T09:39:52+02:00;
+  };
 
-with import "${src.out}/rust-overlay.nix" pkgs pkgs;
+in with import "${src.out}/rust-overlay.nix" pkgs pkgs;
 
 let
   # as per remacs/rust-toolchain
-  rust = (rustChannelOf { date = "2019-05-01"; channel = "nightly"; }).rust;
-in
+  rust = (rustChannelOf {
+    date = "2019-05-01";
+    channel = "nightly";
+  }).rust;
 
-let
-  remacsRust = import ./remacs-rust.nix { remacsSource = remacsSource; };
-in
+in let remacsRust = import ./remacs-rust.nix { remacsSource = remacsSource; };
 
-stdenv.mkDerivation rec {
+in stdenv.mkDerivation rec {
   name = "remacs-${version}${versionModifier}";
   # as per remacs/configure.ac AC_INIT
   version = "27.0.50";
@@ -33,12 +33,31 @@ stdenv.mkDerivation rec {
   enableParallelBuilding = true;
 
   buildInputs = [
-    rust systemd texinfo libjpeg libtiff giflib xorg.libXpm gtk3
-    gnutls ncurses libxml2 xorg.libXt imagemagick librsvg gpm dbus
-    libotf pkgconfig autoconf clang llvmPackages.libclang git
+    rust
+    systemd
+    texinfo
+    libjpeg
+    libtiff
+    giflib
+    xorg.libXpm
+    gtk3
+    gnutls
+    ncurses
+    libxml2
+    xorg.libXt
+    imagemagick
+    librsvg
+    gpm
+    dbus
+    libotf
+    pkgconfig
+    autoconf
+    clang
+    llvmPackages.libclang
+    git
   ];
 
-  patches = [./files/autogen-sh-0001.patch];
+  patches = [ ./files/autogen-sh-0001.patch ];
 
   postPatch = ''
     pwd="$(type -P pwd)"
@@ -61,9 +80,7 @@ stdenv.mkDerivation rec {
     "CARGO_FLAGS=-Zoffline" # soon --offline
   ];
 
-  configureFlags = [
-    "--enable-rust-debug"
-  ];
+  configureFlags = [ "--enable-rust-debug" ];
 
   # the nixpkgs emacs wrapper requires these paths to be present
   postInstall = ''

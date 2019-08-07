@@ -1,9 +1,8 @@
 { pkgs, ... }:
 let
-  sysconfig = (import <nixpkgs/nixos> {}).config;
+  sysconfig = (import <nixpkgs/nixos> { }).config;
   imageDirectory = "%h/.backgrounds/${sysconfig.networking.hostName}";
-in
-{
+in {
   systemd.user.services.set-background = {
     Unit = {
       Description = "Set desktop background using feh";
@@ -14,8 +13,6 @@ in
       Type = "oneshot";
       ExecStart = "${pkgs.feh}/bin/feh --randomize --bg-tile ${imageDirectory}";
     };
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
+    Install = { WantedBy = [ "graphical-session.target" ]; };
   };
 }

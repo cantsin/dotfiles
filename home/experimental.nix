@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {}, ... }:
+{ pkgs ? import <nixpkgs> { }, ... }:
 let
   catt = pkgs.python37.pkgs.buildPythonPackage rec {
     pname = "catt";
@@ -10,14 +10,16 @@ let
     };
 
     doCheck = false;
-    propagatedBuildInputs = with pkgs.python37.pkgs; [PyChromecast youtube-dl click];
+    propagatedBuildInputs = with pkgs.python37.pkgs; [
+      PyChromecast
+      youtube-dl
+      click
+    ];
 
     meta = {
       homepage = "https://github.com/skorokithakis/catt";
-      description = "Cast All The Things allows you to send videos from many, many online sources to your Chromecast.";
+      description =
+        "Cast All The Things allows you to send videos from many, many online sources to your Chromecast.";
     };
   };
-in
-{
-  home.packages = [catt];
-}
+in { home.packages = [ catt ]; }

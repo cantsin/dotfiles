@@ -1,58 +1,57 @@
 { remacsSource ? ./remacs }:
 
-with import <nixpkgs> {};
+with import <nixpkgs> { };
 
 let
   fetchcargo = import <nixpkgs/pkgs/build-support/rust/fetchcargo.nix> {
     inherit (pkgs) stdenv cacert git cargo cargo-vendor python3;
   };
-in
 
-# we want to version cargo vendored sources (via -x or
-# --explicit-version) since remacs uses different versions of the same
-# library. we hack this into the custom cargoUpdateHook.
-let doVersionedUpdate = ''
-  mkdir -p $out/versioned
-  cargo vendor -x $out/versioned
-'';
-in
+  # we want to version cargo vendored sources (via -x or
+  # --explicit-version) since remacs uses different versions of the same
+  # library. we hack this into the custom cargoUpdateHook.
+in let
+  doVersionedUpdate = ''
+    mkdir -p $out/versioned
+    cargo vendor -x $out/versioned
+  '';
 
-let remacsRustBindings = fetchcargo rec {
-  name = "remacsRustBindings";
-  sourceRoot = null;
-  srcs = null;
-  src = "${remacsSource}/rust_src/remacs-bindings";
-  cargoUpdateHook = doVersionedUpdate;
-  patches = [];
-  sha256 = "0wgyzy73hlxzb375nmi1vpwinx9hwrgczl6jl45wlp9653920845";
-};
-in
+in let
+  remacsRustBindings = fetchcargo rec {
+    name = "remacsRustBindings";
+    sourceRoot = null;
+    srcs = null;
+    src = "${remacsSource}/rust_src/remacs-bindings";
+    cargoUpdateHook = doVersionedUpdate;
+    patches = [ ];
+    sha256 = "0wgyzy73hlxzb375nmi1vpwinx9hwrgczl6jl45wlp9653920845";
+  };
 
-let remacsRustSrc = fetchcargo rec {
-  name = "remacsRustSrc";
-  sourceRoot = null;
-  srcs = null;
-  src = "${remacsSource}/rust_src";
-  cargoUpdateHook = ''
-    sed -e 's/@CARGO_.*@//' Cargo.toml.in > Cargo.toml
-  '' + doVersionedUpdate;
-  patches = [];
-  sha256 = "10w1y5f5pzaq24cd0r2ksx72mi16za8gakzla713ca86y0fwxd6j";
-};
-in
+in let
+  remacsRustSrc = fetchcargo rec {
+    name = "remacsRustSrc";
+    sourceRoot = null;
+    srcs = null;
+    src = "${remacsSource}/rust_src";
+    cargoUpdateHook = ''
+      sed -e 's/@CARGO_.*@//' Cargo.toml.in > Cargo.toml
+    '' + doVersionedUpdate;
+    patches = [ ];
+    sha256 = "10w1y5f5pzaq24cd0r2ksx72mi16za8gakzla713ca86y0fwxd6j";
+  };
 
-let remacsHashdir = fetchcargo rec {
-  name = "remacsHashdir";
-  sourceRoot = null;
-  srcs = null;
-  src = "${remacsSource}/lib-src/hashdir";
-  cargoUpdateHook = doVersionedUpdate;
-  patches = [];
-  sha256 = "0054hrqc3yab0y11mmv1r97fngcpp9w191049ivawwmmg9yp8xri";
-};
-in
+in let
+  remacsHashdir = fetchcargo rec {
+    name = "remacsHashdir";
+    sourceRoot = null;
+    srcs = null;
+    src = "${remacsSource}/lib-src/hashdir";
+    cargoUpdateHook = doVersionedUpdate;
+    patches = [ ];
+    sha256 = "0054hrqc3yab0y11mmv1r97fngcpp9w191049ivawwmmg9yp8xri";
+  };
 
-stdenv.mkDerivation {
+in stdenv.mkDerivation {
   name = "remacsRust";
   srcs = [ remacsRustBindings remacsHashdir remacsRustSrc ];
   sourceRoot = ".";

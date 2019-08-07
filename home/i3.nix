@@ -20,8 +20,8 @@
   '';
   config = {
     modifier = "Mod4";
-    fonts = ["Triplicate T3c" "Liberation Mono 16"];
-    bars = [];
+    fonts = [ "Triplicate T3c" "Liberation Mono 16" ];
+    bars = [ ];
     colors = {
       focused = {
         border = "$black";
@@ -54,14 +54,22 @@
       background = "$black";
     };
     window.commands = [
-      { criteria = { class = "splash"; }; command = "floating enable"; }
-      { criteria = { workspace = "κ"; }; command = "layout stacked"; }
+      {
+        criteria = { class = "splash"; };
+        command = "floating enable";
+      }
+      {
+        criteria = { workspace = "κ"; };
+        command = "layout stacked";
+      }
     ];
     keybindings = {
       "Print" = "exec flameshot gui";
       "Mod4+Return" = "exec i3-sensible-terminal";
-      "Mod4+p" = "exec dmenu_run -fn 'Triplicate T3c-16'  -sb '#ff8700' -sf '#1d2021'";
-      "Mod4+x" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pf Triplicate-T3c";
+      "Mod4+p" =
+        "exec dmenu_run -fn 'Triplicate T3c-16'  -sb '#ff8700' -sf '#1d2021'";
+      "Mod4+x" =
+        "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pf Triplicate-T3c";
       "Mod4+Shift+q" = "kill";
       "Mod4+h" = "split h";
       "Mod4+v" = "split v";
@@ -106,8 +114,10 @@
       "Mod4+Right" = "move workspace to output right";
       "Mod4+Left" = "move workspace to output left";
     };
-    startup = [
-      { command = "systemctl --user restart polybar"; always = true; notification = false; }
-    ];
+    startup = [{
+      command = "systemctl --user restart polybar";
+      always = true;
+      notification = false;
+    }];
   };
 }

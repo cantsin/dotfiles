@@ -2,29 +2,23 @@
 
 let
   hostName = (import ./hostname.nix).hostName;
-  useNvidia = builtins.elem hostName ["zen"];
-  secureBoot = builtins.elem hostName ["satori"];
-in
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ] ++ (
-    builtins.filter builtins.pathExists
-      [
-        ./system-vpn.nix
-        ./system-hosts.nix
-        ./system-experimental.nix
-      ]
-    );
+  useNvidia = builtins.elem hostName [ "zen" ];
+  secureBoot = builtins.elem hostName [ "satori" ];
+in {
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ] ++ (builtins.filter builtins.pathExists [
+    ./system-vpn.nix
+    ./system-hosts.nix
+    ./system-experimental.nix
+  ]);
 
-  boot.initrd.luks.devices = if secureBoot then [
-    {
-      name = "root";
-      device = "/dev/nvme0n1p2";
-      preLVM = true;
-    }
-  ] else [];
+  boot.initrd.luks.devices = if secureBoot then [{
+    name = "root";
+    device = "/dev/nvme0n1p2";
+    preLVM = true;
+  }] else
+    [ ];
 
   environment.variables.TERMINAL = "st";
   environment.variables.EDITOR = "emacs";
@@ -93,7 +87,7 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [pkgs.hplip];
+  services.printing.drivers = [ pkgs.hplip ];
   # http://localhost:631/ -- HP Color LaserJet MFP M477fdw
 
   # Enable sound.
@@ -124,7 +118,7 @@ in
 
   # conditional nvidia support
   nixpkgs.config.allowUnfree = useNvidia;
-  services.xserver.videoDrivers = if useNvidia then ["nvidia"] else [];
+  services.xserver.videoDrivers = if useNvidia then [ "nvidia" ] else [ ];
 
   virtualisation.docker.enable = true;
   virtualisation.virtualbox.host.enable = true;
@@ -138,7 +132,7 @@ in
   users.extraUsers.james = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = ["wheel" "networkmanager" "docker"];
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
     shell = pkgs.zsh;
   };
   users.extraGroups.vboxusers.members = [ "james" ];

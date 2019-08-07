@@ -3,88 +3,84 @@
 let
   useRemacs = true;
   dotfiles = "/home/james/.dotfiles";
-in
-{
+in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   # patch suckless terminal
-  nixpkgs.overlays = [(self: super: {
-    st = super.st.override {
-      conf = builtins.readFile ./st-config.h;
-      patches = [./st-badweight.patch] ++ builtins.map super.fetchurl [{
-        url = "https://st.suckless.org/patches/bold-is-not-bright/st-bold-is-not-bright-20190127-3be4cf1.diff";
-        sha256 = "1cpap2jz80n90izhq5fdv2cvg29hj6bhhvjxk40zkskwmjn6k49j";
-      }
-      {
-        url = "http://st.suckless.org/patches/anysize/st-anysize-0.8.1.diff";
-        sha256 = "03z5vvajfbkpxvvk394799l94nbd8xk57ijq17hpmq1g1p2xn641";
-      }
-      {
-        url = "https://st.suckless.org/patches/visualbell/st-visualbell-0.8.1.diff";
-        sha256 = "1cr8vk8yjlpg6wj4p05lb37q111pih6rmrq2cmnmp1rkw3mnq1f4";
-      }];
-    };
-  })];
+  nixpkgs.overlays = [
+    (self: super: {
+      st = super.st.override {
+        conf = builtins.readFile ./st-config.h;
+        patches = [ ./st-badweight.patch ] ++ builtins.map super.fetchurl [
+          {
+            url =
+              "https://st.suckless.org/patches/bold-is-not-bright/st-bold-is-not-bright-20190127-3be4cf1.diff";
+            sha256 = "1cpap2jz80n90izhq5fdv2cvg29hj6bhhvjxk40zkskwmjn6k49j";
+          }
+          {
+            url =
+              "http://st.suckless.org/patches/anysize/st-anysize-0.8.1.diff";
+            sha256 = "03z5vvajfbkpxvvk394799l94nbd8xk57ijq17hpmq1g1p2xn641";
+          }
+          {
+            url =
+              "https://st.suckless.org/patches/visualbell/st-visualbell-0.8.1.diff";
+            sha256 = "1cr8vk8yjlpg6wj4p05lb37q111pih6rmrq2cmnmp1rkw3mnq1f4";
+          }
+        ];
+      };
+    })
+  ];
 
-  home.packages = with pkgs; [
-    arandr
-    bc
-    bind
-    direnv
-    evince
-    feh
-    file
-    gitAndTools.hub
-    htop
-    ispell
-    nmap
-    pstree
-    ripgrep
-    st
-    tig
-    tmux
-    xlibs.xmodmap
-    zeal
-    zip
+  home.packages = with pkgs;
+    [
+      arandr
+      bc
+      bind
+      direnv
+      evince
+      feh
+      file
+      gitAndTools.hub
+      htop
+      ispell
+      nmap
+      pstree
+      ripgrep
+      st
+      tig
+      tmux
+      xlibs.xmodmap
+      zeal
+      zip
 
-    # convenience
-    nix-prefetch-scripts
-    nix-zsh-completions
+      # convenience
+      nix-prefetch-scripts
+      nix-zsh-completions
 
-    # applets
-    networkmanagerapplet
+      # applets
+      networkmanagerapplet
 
-    # notification system
-    notify-osd-customizable
-  ] ++
-  (if useRemacs then [ (import ./remacs/build.nix {}) ] else []);
+      # notification system
+      notify-osd-customizable
+    ] ++ (if useRemacs then [ (import ./remacs/build.nix { }) ] else [ ]);
 
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
     userName = "James Tranovich";
     userEmail = "jtranovich@gmail.com";
-    aliases = {
-      co = "checkout";
-    };
+    aliases = { co = "checkout"; };
     extraConfig = {
-      core = {
-        editor = "emacs";
-      };
-      pull = {
-        rebase = true;
-      };
-      rebase = {
-        autostash = true;
-      };
+      core = { editor = "emacs"; };
+      pull = { rebase = true; };
+      rebase = { autostash = true; };
       sendemail = {
         confirm = "auto";
         smtpserver = "/home/james/.nix-profile/bin/msmtp";
       };
-      github = {
-        user = "cantsin";
-      };
+      github = { user = "cantsin"; };
     };
   };
 
@@ -121,7 +117,7 @@ in
 
   programs.zsh.oh-my-zsh = {
     enable = true;
-    plugins = ["git" "docker" "tmux"];
+    plugins = [ "git" "docker" "tmux" ];
   };
 
   programs.emacs = {
@@ -131,7 +127,7 @@ in
 
   programs.tmux = {
     enable = true;
-    extraConfig = "
+    extraConfig = ''
       set -g default-terminal 'screen-256color'
       set-option -g status-style fg=yellow,bg=colour237,default
       set-option -g pane-border-style fg=colour237
@@ -146,9 +142,9 @@ in
       set -g prefix C-o
       unbind-key -n C-a
       set -g mouse on
-      set -g status-left ''
-      set -g status-right ''
-    ";
+      set -g status-left ''\''
+      set -g status-right ''\''
+    '';
   };
 
   programs.firefox = {
@@ -216,7 +212,8 @@ in
       '';
     };
     ".config/bc".source = "${dotfiles}/bc";
-    ".zsh-custom/themes/cantsin.zsh-theme".source = "${dotfiles}/zsh-custom/themes/cantsin.zsh-theme";
+    ".zsh-custom/themes/cantsin.zsh-theme".source =
+      "${dotfiles}/zsh-custom/themes/cantsin.zsh-theme";
     ".backgrounds".source = "${dotfiles}/backgrounds";
     ".emacs.d" = {
       source = "${dotfiles}/emacs.d";
@@ -231,10 +228,9 @@ in
   # fix java applications
   home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
 
-  imports = [
-    ./background.nix
-    ./experimental.nix
-  ] ++ (
-    if builtins.pathExists ./secrets/default.nix then [./secrets/default.nix] else []
-  );
+  imports = [ ./background.nix ./experimental.nix ]
+    ++ (if builtins.pathExists ./secrets/default.nix then
+      [ ./secrets/default.nix ]
+    else
+      [ ]);
 }
