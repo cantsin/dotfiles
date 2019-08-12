@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  useRemacs = true;
+  useRemacs = false;
   dotfiles = "/home/james/.dotfiles";
 in {
   # Let Home Manager install and manage itself.
