@@ -42,6 +42,7 @@ in {
       evince
       feh
       file
+      gcc
       gitAndTools.hub
       htop
       ispell
