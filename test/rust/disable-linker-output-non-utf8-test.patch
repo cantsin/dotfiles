@@ -1,0 +1,15 @@
+diff --git a/src/test/run-make-fulldeps/linker-output-non-utf8/Makefile b/src/test/run-make-fulldeps/linker-output-non-utf8/Makefile
+index b47ce17ec8..726fc2d5b3 100644
+--- a/src/test/run-make-fulldeps/linker-output-non-utf8/Makefile
++++ b/src/test/run-make-fulldeps/linker-output-non-utf8/Makefile
+@@ -2,6 +2,10 @@
+ 
+ # Make sure we don't ICE if the linker prints a non-UTF-8 error message.
+ 
++# ignore-linux
++#
++# does not work on nixos (setup error)
++
+ # ignore-windows
+ #
+ # This does not work in its current form on windows, possibly due to
