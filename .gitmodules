@@ -1,9 +1,9 @@
 [submodule "triplicate"]
 	path = fonts/triplicate
-	url = ssh://git@nas:30001/resources/triplicate
+	url = ssh://git@git.home/james/triplicate
 [submodule "home/secrets"]
 	path = home/secrets
-	url = ssh://git@nas:30001/dev/nix-config-secrets
+	url = ssh://git@git.home/james/dotfiles-secrets
 [submodule "emacs.d"]
 	path = emacs.d
 	url = git@github.com:cantsin/dotemacs
