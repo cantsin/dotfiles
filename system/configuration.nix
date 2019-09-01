@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   hostName = (import ./hostname.nix).hostName;
@@ -9,7 +9,6 @@ in {
     ./hardware-configuration.nix
   ] ++ (builtins.filter builtins.pathExists [
     ./system-vpn.nix
-    ./system-hosts.nix
     ./system-experimental.nix
   ]);
 
@@ -25,11 +24,24 @@ in {
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 25;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = hostName;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
+  networking.networkmanager.insertNameservers = [ "10.0.0.192" ];
+  networking.nameservers = [ "10.0.0.192" ];
+
+  # do not overwrite /etc/resolv.conf
+  networking.networkmanager.dns = lib.mkForce "none";
+  services.resolved.enable = lib.mkForce false;
+  environment.etc."resolv.conf" = {
+    text = (lib.concatMapStrings (ns: ''
+      nameserver ${ns}
+    '') config.networking.nameservers);
+    mode = "0444";
+  };
 
   # Select internationalisation properties.
   i18n = {
