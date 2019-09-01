@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   hostName = (import ./hostname.nix).hostName;
@@ -30,18 +30,6 @@ in {
   networking.hostName = hostName;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
-  networking.networkmanager.insertNameservers = [ "10.0.0.192" ];
-  networking.nameservers = [ "10.0.0.192" ];
-
-  # do not overwrite /etc/resolv.conf
-  networking.networkmanager.dns = lib.mkForce "none";
-  services.resolved.enable = lib.mkForce false;
-  environment.etc."resolv.conf" = {
-    text = (lib.concatMapStrings (ns: ''
-      nameserver ${ns}
-    '') config.networking.nameservers);
-    mode = "0444";
-  };
 
   # Select internationalisation properties.
   i18n = {
