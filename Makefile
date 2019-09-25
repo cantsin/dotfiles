@@ -30,6 +30,7 @@ init-home-manager:
 home:
 	rm ~/.config/nixpkgs/*.{nix,h,patch}
 	cp home/*.{nix,h,patch} ~/.config/nixpkgs/
+	cp test/{catt,afew}.nix ~/.config/nixpkgs/
 	cp -r home/remacs ~/.config/nixpkgs/
 	cp emacs.d/packages.nix ~/.config/nixpkgs/emacs-packages.nix
 	if [ -f home/secrets/default.nix ]; then \
