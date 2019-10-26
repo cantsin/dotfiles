@@ -1,7 +1,7 @@
 .PHONY: system home
 
 system:
-	sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+	sudo nix-channel --add https://nixos.org/channels/nixos-19.09 nixos
 	sudo cp system/configuration.nix /etc/nixos/
 	if [ ! -f system/hostname.nix ]; then \
 		echo "Hostname is required."; \
