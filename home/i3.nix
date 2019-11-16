@@ -113,6 +113,8 @@
       "Mod4+Shift+0" = "move container to workspace $ws10";
       "Mod4+Right" = "move workspace to output right";
       "Mod4+Left" = "move workspace to output left";
+      "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
+      "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
     };
     startup = [{
       command = "systemctl --user restart polybar";

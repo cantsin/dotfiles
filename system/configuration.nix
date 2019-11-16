@@ -95,6 +95,7 @@ in {
   # hardware.pulseaudio.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
+  hardware.brightnessctl.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -132,7 +133,7 @@ in {
   users.extraUsers.james = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "video" ];
     shell = pkgs.zsh;
   };
   users.extraGroups.vboxusers.members = [ "james" ];
