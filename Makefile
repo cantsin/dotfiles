@@ -28,7 +28,7 @@ init-home-manager:
 	git submodule update
 
 home:
-	rm ~/.config/nixpkgs/*.{nix,h,patch}
+	rm -f ~/.config/nixpkgs/*.{nix,h,patch}
 	cp home/*.{nix,h,patch} ~/.config/nixpkgs/
 	cp test/{catt,afew}.nix ~/.config/nixpkgs/
 	cp -r home/remacs ~/.config/nixpkgs/
