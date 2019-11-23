@@ -29,7 +29,9 @@ init-home-manager:
 
 home:
 	rm -f ~/.config/nixpkgs/*.{nix,h,patch}
-	cp home/*.{nix,h,patch} ~/.config/nixpkgs/
+	cp home/*.nix ~/.config/nixpkgs/
+	mkdir -p ~/.config/nixpkgs/st
+	cp home/st/*.{h,patch} ~/.config/nixpkgs/st
 	cp test/{catt,afew}.nix ~/.config/nixpkgs/
 	cp -r home/remacs ~/.config/nixpkgs/
 	cp emacs.d/packages.nix ~/.config/nixpkgs/emacs-packages.nix

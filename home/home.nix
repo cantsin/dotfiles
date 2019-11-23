@@ -11,8 +11,8 @@ in {
   nixpkgs.overlays = [
     (self: super: {
       st = super.st.override {
-        conf = builtins.readFile ./st-config.h;
-        patches = [ ./st-badweight.patch ] ++ builtins.map super.fetchurl [
+        conf = builtins.readFile ./st/config.h;
+        patches = [ ./st/badweight.patch ] ++ builtins.map super.fetchurl [
           {
             url =
               "https://st.suckless.org/patches/bold-is-not-bright/st-bold-is-not-bright-20190127-3be4cf1.diff";
