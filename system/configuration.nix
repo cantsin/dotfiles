@@ -9,6 +9,7 @@ in {
     ./hardware-configuration.nix
   ] ++ (builtins.filter builtins.pathExists [
     ./system-vpn.nix
+    ./system-hosts.nix
     ./system-experimental.nix
   ]);
 
