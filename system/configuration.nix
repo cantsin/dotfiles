@@ -134,7 +134,7 @@ in {
   users.extraUsers.james = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = [ "wheel" "networkmanager" "docker" "video" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "video" "dialout" ];
     shell = pkgs.zsh;
   };
   users.extraGroups.vboxusers.members = [ "james" ];
