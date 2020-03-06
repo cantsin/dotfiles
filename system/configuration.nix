@@ -100,7 +100,6 @@ in {
   # hardware.pulseaudio.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
-  hardware.brightnessctl.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

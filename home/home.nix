@@ -38,6 +38,7 @@ in {
       arandr
       bc
       bind
+      brightnessctl
       direnv
       evince
       feh
