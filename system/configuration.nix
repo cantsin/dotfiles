@@ -13,12 +13,12 @@ in {
     ./system-experimental.nix
   ]);
 
-  boot.initrd.luks.devices = if secureBoot then [{
+  boot.initrd.luks.devices = if secureBoot then {
     name = "root";
     device = "/dev/nvme0n1p2";
     preLVM = true;
-  }] else
-    [ ];
+  } else
+    { };
 
   environment.variables.TERMINAL = "st";
   environment.variables.EDITOR = "emacs";
@@ -33,11 +33,11 @@ in {
   networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
-  i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
-    defaultLocale = "en_US.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
   };
+  i18n.defaultLocale = "en_US.UTF-8";
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -52,6 +52,10 @@ in {
     rsync
     xterm
     zsh
+
+    # icons
+    hicolor-icon-theme
+    tango-icon-theme
   ];
 
   fonts = {
@@ -102,9 +106,9 @@ in {
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "eurosign:e";
-  services.xserver.windowManager.default = "i3";
   services.xserver.windowManager.i3.enable = true;
   services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.displayManager.defaultSession = "none+i3";
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.lightdm.background = "black";
   services.xserver.displayManager.lightdm.extraSeatDefaults = ''

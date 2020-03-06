@@ -146,8 +146,8 @@ in {
       set -g prefix C-o
       unbind-key -n C-a
       set -g mouse on
-      set -g status-left ''\''
-      set -g status-right ''\''
+      set -g status-left '''
+      set -g status-right '''
     '';
   };
 
@@ -180,8 +180,7 @@ in {
 
   services.flameshot.enable = true;
   services.syncthing.enable = true;
-  # qsyncthingtray is currently broken. in the meantime, go to http://127.0.0.1:8384/ directly
-  # services.syncthing.tray = true;
+  services.syncthing.tray = true;
   services.network-manager-applet.enable = true;
   services.polybar = import ./polybar.nix pkgs;
   services.redshift = {
