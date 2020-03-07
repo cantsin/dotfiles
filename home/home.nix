@@ -76,7 +76,7 @@ in {
     userEmail = "jtranovich@gmail.com";
     aliases = {
       co = "checkout";
-      sm = "!git fetch origin && git rebase origin/master";
+      do = "!git fetch origin && git rebase origin/master";
     };
     extraConfig = {
       core = { editor = "emacs"; };
