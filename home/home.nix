@@ -217,6 +217,11 @@ in {
         bubble-close-on-click = 1
       '';
     };
+    ".zsh-custom/themes/powerlevel10k" = {
+      source = "${dotfiles}/home/powerlevel10k";
+      recursive = true;
+    };
+    ".p10k.zsh".source = "${dotfiles}/home/p10k.zsh";
     ".config/bc".source = "${dotfiles}/bc";
     ".backgrounds".source = "${dotfiles}/backgrounds";
     ".emacs.d" = {

@@ -7,3 +7,6 @@
 [submodule "emacs.d"]
 	path = emacs.d
 	url = git@github.com:cantsin/dotemacs
+[submodule "home/powerlevel10k"]
+	path = home/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
