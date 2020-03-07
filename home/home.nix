@@ -122,7 +122,10 @@ in {
     source ~/.p10k.zsh
   '';
 
-  programs.zsh.oh-my-zsh.enable = true;
+  programs.zsh.oh-my-zsh = {
+    plugins = [ "tmux " ];
+    enable = true;
+  };
 
   programs.emacs = {
     enable = !useRemacs;
