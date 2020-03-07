@@ -64,8 +64,6 @@ epkgs:
     markdown-mode
     markdown-mode-plus
     mc-extras
-    # merlin
-    # TODO: broken?
     moe-theme
     multiple-cursors
     nix-mode
