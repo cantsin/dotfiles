@@ -56,6 +56,7 @@ in {
       xlibs.xmodmap
       zeal
       zip
+      zsh-powerlevel10k
 
       # convenience
       nix-prefetch-scripts
@@ -93,7 +94,7 @@ in {
   programs.zsh.sessionVariables = {
     BC_ENV_ARGS = "$HOME/.config/bc";
     ZSH_CUSTOM = "$HOME/.zsh-custom";
-    ZSH_THEME = "cantsin";
+    ZSH_THEME = "powerlevel10k/powerlevel10k";
     ZSH_TMUX_AUTOSTART = "true";
     ZSH_TMUX_AUTOCONNECT = "false";
   };
@@ -118,12 +119,10 @@ in {
       fi
     }
     eval "$(direnv hook zsh)"
+    source ~/.p10k.zsh
   '';
 
-  programs.zsh.oh-my-zsh = {
-    enable = true;
-    plugins = [ "git" "docker" "tmux" ];
-  };
+  programs.zsh.oh-my-zsh.enable = true;
 
   programs.emacs = {
     enable = !useRemacs;
@@ -216,8 +215,6 @@ in {
       '';
     };
     ".config/bc".source = "${dotfiles}/bc";
-    ".zsh-custom/themes/cantsin.zsh-theme".source =
-      "${dotfiles}/zsh-custom/themes/cantsin.zsh-theme";
     ".backgrounds".source = "${dotfiles}/backgrounds";
     ".emacs.d" = {
       source = "${dotfiles}/emacs.d";
