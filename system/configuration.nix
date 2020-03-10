@@ -133,11 +133,15 @@ in {
     user = "james";
   };
 
+  # android
+  programs.adb.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.james = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = [ "wheel" "networkmanager" "docker" "video" "dialout" ];
+    extraGroups =
+      [ "wheel" "networkmanager" "docker" "video" "dialout" "adbusers" ];
     shell = pkgs.zsh;
   };
   users.extraGroups.vboxusers.members = [ "james" ];
