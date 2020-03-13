@@ -31,7 +31,8 @@ in {
       font-0 = "Triplicate T3c:pixelsize=${fontsize}";
       font-1 = "FuraCode Nerd Font:pixelsize=${fontsize}:style=Light";
       modules-left = "i3";
-      modules-center = if hostname == "satori" then "github" else "github mail";
+      modules-center =
+        if hostname == "satori" then "github" else "current-task github mail";
       modules-right = "wlan eth battery date";
       height = height;
       dpi = 192;
@@ -129,6 +130,13 @@ in {
       time = "%H:%M:%S";
       label = " %date%  %time%";
       label-foreground = "\${color.white}";
+    };
+    "module/current-task" = {
+      type = "custom/script";
+      exec = "~/.config/nixpkgs/org-task/org-task.sh";
+      label = "task: %output%";
+      interval = 30;
+      label-foreground = "\${color.darkwhite}";
     };
   };
   script = "polybar status &";

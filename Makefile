@@ -32,6 +32,8 @@ home:
 	cp home/*.nix ~/.config/nixpkgs/
 	mkdir -p ~/.config/nixpkgs/st
 	cp home/st/*.{h,patch} ~/.config/nixpkgs/st
+	mkdir -p ~/.config/nixpkgs/org-task
+	cp home/org-task/*.{sh,el} ~/.config/nixpkgs/org-task
 	cp test/{catt,afew}.nix ~/.config/nixpkgs/
 	cp -r home/remacs ~/.config/nixpkgs/
 	cp emacs.d/packages.nix ~/.config/nixpkgs/emacs-packages.nix
