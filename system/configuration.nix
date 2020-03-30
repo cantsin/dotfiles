@@ -96,8 +96,8 @@ in {
   # http://localhost:631/ -- HP Color LaserJet MFP M477fdw
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
 
@@ -140,8 +140,15 @@ in {
   users.extraUsers.james = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups =
-      [ "wheel" "networkmanager" "docker" "video" "dialout" "adbusers" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+      "video"
+      "audio"
+      "dialout"
+      "adbusers"
+    ];
     shell = pkgs.zsh;
   };
   users.extraGroups.vboxusers.members = [ "james" ];
