@@ -12,12 +12,12 @@ in {
     ./system-experimental.nix
   ]);
 
-  boot.initrd.luks.devices = if secureBoot then {
+  boot.initrd.luks.devices = if secureBoot then [{
     name = "root";
     device = "/dev/nvme0n1p2";
     preLVM = true;
-  } else
-    { };
+  }] else
+    [ ];
 
   environment.variables.TERMINAL = "st";
   environment.variables.EDITOR = "emacs";
