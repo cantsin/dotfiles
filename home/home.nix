@@ -102,11 +102,11 @@ in {
     command_not_found_handler() { command-not-found "$1" }
     nixify() {
       if [ ! -e ./.envrc ]; then
-        echo "use nix" > .envrc
+        echo 'eval "$(lorri direnv)"' > .envrc
         direnv allow
       fi
-      if [ ! -e default.nix ]; then
-        cat > default.nix <<'EOF'
+      if [ ! -e shell.nix ]; then
+        cat > shell.nix <<'EOF'
     with import <nixpkgs> {};
     stdenv.mkDerivation {
       name = "env";
@@ -115,7 +115,7 @@ in {
       ];
     }
     EOF
-        emacs default.nix
+        emacs shell.nix
       fi
     }
     eval "$(direnv hook zsh)"
@@ -181,6 +181,7 @@ in {
     '';
   };
 
+  services.lorri.enable = true;
   services.flameshot.enable = true;
   services.syncthing.enable = true;
   services.syncthing.tray = true;
