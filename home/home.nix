@@ -154,12 +154,6 @@ in {
     '';
   };
 
-  programs.firefox = {
-    enable = true;
-    enableAdobeFlash = true; # only for https://anywhere.convorelay.com/
-    enableGoogleTalk = true;
-  };
-
   xsession = {
     enable = true;
     windowManager.i3 = import ./i3.nix pkgs;
@@ -170,6 +164,7 @@ in {
 
   programs.jq.enable = true;
   programs.browserpass.enable = true;
+  programs.firefox.enable = true;
 
   services.emacs.enable = !useRemacs;
 
@@ -183,8 +178,6 @@ in {
 
   services.lorri.enable = true;
   services.flameshot.enable = true;
-  services.syncthing.enable = true;
-  services.syncthing.tray = true;
   services.network-manager-applet.enable = true;
   services.polybar = import ./polybar.nix pkgs;
   services.redshift = {
