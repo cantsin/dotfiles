@@ -2,7 +2,7 @@
 
 let
   hostName = (import ./hostname.nix).hostName;
-  useNvidia = builtins.elem hostName [ "zen" ];
+  useNvidia = builtins.elem hostName [ ];
   secureBoot = builtins.elem hostName [ "satori" ];
 in {
   imports = [ # Include the results of the hardware scan.
@@ -27,6 +27,8 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 25;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "amd_iommu=pt" "iommu=soft" ];
 
   networking.hostName = hostName;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -100,6 +102,7 @@ in {
   hardware.pulseaudio.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
+  hardware.enableRedistributableFirmware = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -123,7 +126,7 @@ in {
 
   # conditional nvidia support
   nixpkgs.config.allowUnfree = useNvidia;
-  services.xserver.videoDrivers = if useNvidia then [ "nvidia" ] else [ ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   virtualisation.docker.enable = true;
   virtualisation.virtualbox.host.enable = true;
