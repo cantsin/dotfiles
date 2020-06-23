@@ -154,13 +154,8 @@ in {
     '';
   };
 
-  xsession = {
-    enable = true;
-    windowManager.i3 = import ./i3.nix pkgs;
-    initExtra = ''
-      xmodmap ~/.Xmodmap
-    '';
-  };
+  xsession.enable = true;
+  xsession.initExtra = "xmodmap ~/.Xmodmap";
 
   programs.jq.enable = true;
   programs.browserpass.enable = true;
@@ -186,11 +181,6 @@ in {
     latitude = "37.733795";
     longitude = "-122.446747";
     provider = "manual";
-  };
-
-  services.screen-locker = {
-    enable = true;
-    lockCmd = "${pkgs.i3lock-fancy}/bin/i3lock-fancy -pf Triplicate-T3c";
   };
 
   home.file = {
@@ -231,7 +221,7 @@ in {
   # fix java applications
   home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
 
-  imports = [ ./background.nix ./experimental.nix ]
+  imports = [ ./background.nix ./experimental.nix ./i3.nix ]
     ++ (if builtins.pathExists ./secrets/default.nix then
       [ ./secrets/default.nix ]
     else
