@@ -154,9 +154,6 @@ in {
     '';
   };
 
-  xsession.enable = true;
-  xsession.initExtra = "xmodmap ~/.Xmodmap";
-
   programs.jq.enable = true;
   programs.browserpass.enable = true;
   programs.firefox.enable = true;
@@ -197,13 +194,6 @@ in {
   services.flameshot.enable = true;
   services.network-manager-applet.enable = true;
   services.polybar = import ./polybar.nix pkgs;
-  services.redshift = {
-    enable = true;
-    tray = true;
-    latitude = "37.733795";
-    longitude = "-122.446747";
-    provider = "manual";
-  };
 
   home.file = {
     ".Xmodmap" = {
@@ -243,7 +233,7 @@ in {
   # fix java applications
   home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
 
-  imports = [ ./background.nix ./experimental.nix ./i3.nix ]
+  imports = [ ./background.nix ./experimental.nix ./sway.nix ]
     ++ (if builtins.pathExists ./secrets/default.nix then
       [ ./secrets/default.nix ]
     else

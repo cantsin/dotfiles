@@ -36,7 +36,8 @@ in {
   # Select internationalisation properties.
   console = {
     font = "Lat2-Terminus16";
-    keyMap = "us";
+    # keyMap = "us";
+    useXkbConfig = true;
   };
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -80,6 +81,8 @@ in {
 
   programs.ssh.startAgent = true;
 
+  programs.sway.enable = true;
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.openssh.permitRootLogin = "no";
@@ -106,21 +109,18 @@ in {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "us";
-  services.xserver.xkbOptions = "eurosign:e";
-  services.xserver.windowManager.i3.enable = true;
+  services.xserver.xkbOptions = "ctrl:nocaps";
+
+  #services.xserver.windowManager.sway.enable = true;
   services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.displayManager.defaultSession = "none+i3";
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.lightdm.extraSeatDefaults = ''
-    greeter-hide-users=false
-  '';
+  services.xserver.displayManager.defaultSession = "sway";
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
   services.xserver.libinput.disableWhileTyping = true;
 
   # fix dconf/dbus errors
-  services.dbus.packages = with pkgs; [ gnome3.dconf ];
+  # services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 

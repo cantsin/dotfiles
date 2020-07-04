@@ -1,4 +1,13 @@
 { pkgs, ... }: {
+  services.redshift = {
+    enable = true;
+    tray = true;
+    latitude = "37.733795";
+    longitude = "-122.446747";
+    provider = "manual";
+  };
+  xsession.enable = true;
+  xsession.initExtra = "xmodmap ~/.Xmodmap";
   xsession.windowManager.i3 = {
     enable = true;
     extraConfig = ''
