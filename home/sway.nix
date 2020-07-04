@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 let
+  sysconfig = (import <nixpkgs/nixos> { }).config;
+  hostname = sysconfig.networking.hostName;
   darkred = "#cc241d";
   darkwhite = "#a89984";
   white = "#ebdbb2";
@@ -19,7 +21,7 @@ in {
         "DP-2" = { scale = "2"; };
         "DP-3" = { position = "0 0"; };
         "DVI-D-1" = { position = "2560 0"; };
-        "*" = { bg = "${dotfiles}/backgrounds/zen/forest.jpg fill"; };
+        "*" = { bg = "${dotfiles}/backgrounds/${hostname}/bg.jpg fill"; };
       };
       focus.followMouse = true;
       left = "j";
