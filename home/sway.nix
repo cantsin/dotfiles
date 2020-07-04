@@ -12,6 +12,10 @@ in {
   wayland.windowManager.sway = {
     enable = true;
     config = {
+      left = "j";
+      down = "k";
+      up = "l";
+      right = "semicolon";
       terminal = "st tmux";
       modifier = "Mod4";
       fonts = [ "Triplicate T3c" "Liberation Mono 16" ];
