@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 let
+  lib = import <nixpkgs/lib>;
   sysconfig = (import <nixpkgs/nixos> { }).config;
   hostname = sysconfig.networking.hostName;
   darkred = "#cc241d";
@@ -11,10 +12,11 @@ let
   dotfiles = "/home/james/.dotfiles";
 
 in {
+  home.packages = with pkgs; [ grim slurp wl-clipboard ];
   xsession.windowManager.command = "${pkgs.waybar}/bin/waybar";
   wayland.windowManager.sway = {
     enable = true;
-    config = {
+    config = rec {
       input = { "*" = { xkb_options = "ctrl:nocaps"; }; };
       output = {
         "eDP-1" = { scale = "2"; };
@@ -29,9 +31,15 @@ in {
       up = "l";
       right = "semicolon";
       terminal = "st tmux";
+      menu = ''
+        ${pkgs.bemenu}/bin/bemenu-run -i --fn "Triplicate T3c 16" --tb="#ff8700" --tf="#1d2021" --hf="#ff8700" -p "exec"'';
       modifier = "Mod4";
       fonts = [ "Triplicate T3c" "Liberation Mono 16" ];
       bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
+      keybindings = lib.mkOptionDefault rec {
+        "Print" = ''exec grim -g "$(slurp)"'';
+        "Mod4+p" = "exec ${menu}";
+      };
       colors = {
         focused = {
           border = "${black}";
@@ -67,4 +75,26 @@ in {
   };
   home.file.".config/waybar/config".source = "${dotfiles}/home/waybar.config";
   home.file.".config/waybar/style.css".source = "${dotfiles}/home/waybar.css";
+  programs.mako = {
+    enable = true;
+    font = "Triplicate T3c 12";
+    textColor = darkwhite;
+    backgroundColor = darkblack;
+    borderColor = black;
+    defaultTimeout = 5000;
+  };
+  # systemd.user.services.mako = {
+  #   Unit = {
+  #     Description = "Mako notification daemon";
+  #     PartOf = [ "graphical-session.target" ];
+  #   };
+  #   Install = { WantedBy = [ "graphical-session.target" ]; };
+  #   Service = {
+  #     Type = "simple";
+  #     BusName = "org.freedesktop.Notifications";
+  #     ExecStart = "${pkgs.mako}/bin/mako";
+  #     RestartSec = 5;
+  #     Restart = "always";
+  #   };
+  # };
 }

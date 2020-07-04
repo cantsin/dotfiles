@@ -1,13 +1,6 @@
 { pkgs, ... }: {
   services.polybar = import ./polybar.nix pkgs;
-  services.network-manager-applet.enable = true;
-  services.redshift = {
-    enable = true;
-    tray = true;
-    latitude = "37.733795";
-    longitude = "-122.446747";
-    provider = "manual";
-  };
+  services.flameshot.enable = true;
   xsession.enable = true;
   xsession.initExtra = "xmodmap ~/.Xmodmap";
   xsession.windowManager.i3 = {
