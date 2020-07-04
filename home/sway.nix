@@ -6,8 +6,11 @@ let
   white = "#ebdbb2";
   black = "#282828";
   darkblack = "#1d2021";
+  dotfiles = "/home/james/.dotfiles";
 
 in {
+  home.file.".config/waybar/config".source = "${dotfiles}/home/waybar.config";
+  home.file.".config/waybar/style.css".source = "${dotfiles}/home/waybar.css";
   xsession.windowManager.command = "${pkgs.waybar}/bin/waybar";
   wayland.windowManager.sway = {
     enable = true;
@@ -21,6 +24,7 @@ in {
       terminal = "st tmux";
       modifier = "Mod4";
       fonts = [ "Triplicate T3c" "Liberation Mono 16" ];
+      bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
       colors = {
         focused = {
           border = "${black}";
