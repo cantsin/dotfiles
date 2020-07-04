@@ -1,4 +1,6 @@
 { pkgs, ... }: {
+  services.polybar = import ./polybar.nix pkgs;
+  services.network-manager-applet.enable = true;
   services.redshift = {
     enable = true;
     tray = true;

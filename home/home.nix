@@ -158,28 +158,6 @@ in {
   programs.browserpass.enable = true;
   programs.firefox.enable = true;
 
-  # testing
-  programs.autorandr = {
-    enable = true;
-    profiles = {
-      "main" = {
-        fingerprint = { "eDP-1" = "*"; };
-        config = {
-          "eDP-1" = {
-            enable = true;
-            primary = true;
-            mode = "3840x2160";
-            scale = {
-              method = "factor";
-              x = 0.75;
-              y = 0.75;
-            };
-          };
-        };
-      };
-    };
-  };
-
   services.emacs.enable = !useRemacs;
 
   services.gpg-agent = {
@@ -192,8 +170,6 @@ in {
 
   services.lorri.enable = true;
   services.flameshot.enable = true;
-  services.network-manager-applet.enable = true;
-  services.polybar = import ./polybar.nix pkgs;
 
   home.file = {
     ".Xmodmap" = {

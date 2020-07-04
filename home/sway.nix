@@ -12,6 +12,8 @@ in {
   wayland.windowManager.sway = {
     enable = true;
     config = {
+      input = { "*" = { xkb_options = "ctrl:nocaps"; }; };
+      focus.followMouse = true;
       left = "j";
       down = "k";
       up = "l";
