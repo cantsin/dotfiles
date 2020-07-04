@@ -9,13 +9,12 @@ let
   dotfiles = "/home/james/.dotfiles";
 
 in {
-  home.file.".config/waybar/config".source = "${dotfiles}/home/waybar.config";
-  home.file.".config/waybar/style.css".source = "${dotfiles}/home/waybar.css";
   xsession.windowManager.command = "${pkgs.waybar}/bin/waybar";
   wayland.windowManager.sway = {
     enable = true;
     config = {
       input = { "*" = { xkb_options = "ctrl:nocaps"; }; };
+      output = { "eDP-1" = { scale = "2"; }; };
       focus.followMouse = true;
       left = "j";
       down = "k";
@@ -58,4 +57,6 @@ in {
       };
     };
   };
+  home.file.".config/waybar/config".source = "${dotfiles}/home/waybar.config";
+  home.file.".config/waybar/style.css".source = "${dotfiles}/home/waybar.css";
 }
