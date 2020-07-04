@@ -2,7 +2,6 @@
 
 let
   hostName = (import ./hostname.nix).hostName;
-  useNvidia = builtins.elem hostName [ ];
   secureBoot = builtins.elem hostName [ "satori" ];
 in {
   imports = [ # Include the results of the hardware scan.
@@ -28,7 +27,7 @@ in {
   boot.loader.systemd-boot.configurationLimit = 25;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "amd_iommu=pt" "iommu=soft" ];
+  boot.kernelParams = [ "amd_iommu=pt" "iommu=soft" "amdgpu.dpm=0" ];
 
   networking.hostName = hostName;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -112,7 +111,6 @@ in {
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.displayManager.defaultSession = "none+i3";
   services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.lightdm.background = "black";
   services.xserver.displayManager.lightdm.extraSeatDefaults = ''
     greeter-hide-users=false
   '';
@@ -124,8 +122,6 @@ in {
   # fix dconf/dbus errors
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
-  # conditional nvidia support
-  nixpkgs.config.allowUnfree = useNvidia;
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   virtualisation.docker.enable = true;

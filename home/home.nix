@@ -25,8 +25,8 @@ in {
           }
           {
             url =
-              "https://st.suckless.org/patches/visualbell/st-visualbell-0.8.1.diff";
-            sha256 = "1cr8vk8yjlpg6wj4p05lb37q111pih6rmrq2cmnmp1rkw3mnq1f4";
+              "https://st.suckless.org/patches/visualbell2/st-visualbell2-basic-2020-05-13-045a0fa.diff";
+            sha256 = "05g46klchar4ahp6gz0mc5v4ydlsbi9wkjxdwyh4l5l4banax78n";
           }
         ];
       };
