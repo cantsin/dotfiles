@@ -14,7 +14,12 @@ in {
     enable = true;
     config = {
       input = { "*" = { xkb_options = "ctrl:nocaps"; }; };
-      output = { "eDP-1" = { scale = "2"; }; };
+      output = {
+        "eDP-1" = { scale = "2"; };
+        "DP-2" = { scale = "2"; };
+        "DP-3" = { position = "0 0"; };
+        "DVI-D-1" = { position = "2560 0"; };
+      };
       focus.followMouse = true;
       left = "j";
       down = "k";
