@@ -214,7 +214,7 @@ in {
   # fix java applications
   home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
 
-  imports = [ ./background.nix ./experimental.nix ./sway.nix ]
+  imports = [ ./experimental.nix ./sway.nix ]
     ++ (if builtins.pathExists ./secrets/default.nix then
       [ ./secrets/default.nix ]
     else

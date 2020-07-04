@@ -14,6 +14,7 @@ let
 in {
   home.packages = with pkgs; [ grim slurp wl-clipboard ];
   xsession.windowManager.command = "${pkgs.waybar}/bin/waybar";
+  xsession.preferStatusNotifierItems = true; # enable nm-applet
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
