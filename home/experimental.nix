@@ -7,7 +7,6 @@ let
     sha256 = "0ww96d5yyhl4akcwr9nbgq5kvm7j3q08ikwyqwf3ivil4a0wqc5k";
     # date = 2019-08-25T19:42:47+02:00;
   }) { };
-  catt = import ./catt.nix;
   afew = import ./afew.nix;
 
-in { home.packages = [ nixfmt catt afew ]; }
+in { home.packages = [ nixfmt afew ]; }
