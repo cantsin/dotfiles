@@ -76,6 +76,14 @@ in {
   };
   home.file.".config/waybar/config".source = "${dotfiles}/home/waybar.config";
   home.file.".config/waybar/style.css".source = "${dotfiles}/home/waybar.css";
+  services.redshift = {
+    enable = true;
+    tray = true;
+    package = pkgs.redshift-wlr;
+    latitude = "37.733795";
+    longitude = "-122.446747";
+    provider = "manual";
+  };
   programs.mako = {
     enable = true;
     font = "Triplicate T3c 12";

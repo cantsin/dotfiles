@@ -167,13 +167,6 @@ in {
     '';
   };
   services.lorri.enable = true;
-  services.redshift = {
-    enable = true;
-    tray = true;
-    latitude = "37.733795";
-    longitude = "-122.446747";
-    provider = "manual";
-  };
   services.network-manager-applet.enable = true;
 
   home.file = {
