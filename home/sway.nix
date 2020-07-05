@@ -92,18 +92,18 @@ in {
     borderColor = black;
     defaultTimeout = 5000;
   };
-  # systemd.user.services.mako = {
-  #   Unit = {
-  #     Description = "Mako notification daemon";
-  #     PartOf = [ "graphical-session.target" ];
-  #   };
-  #   Install = { WantedBy = [ "graphical-session.target" ]; };
-  #   Service = {
-  #     Type = "simple";
-  #     BusName = "org.freedesktop.Notifications";
-  #     ExecStart = "${pkgs.mako}/bin/mako";
-  #     RestartSec = 5;
-  #     Restart = "always";
-  #   };
-  # };
+  systemd.user.services.mako = {
+    Unit = {
+      Description = "Mako notification daemon";
+      PartOf = [ "graphical-session.target" ];
+    };
+    Install = { WantedBy = [ "graphical-session.target" ]; };
+    Service = {
+      Type = "simple";
+      BusName = "org.freedesktop.Notifications";
+      ExecStart = "${pkgs.mako}/bin/mako";
+      RestartSec = 5;
+      Restart = "always";
+    };
+  };
 }
