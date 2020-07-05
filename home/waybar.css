@@ -22,12 +22,12 @@ window#waybar {
 #custom-right-arrow-dark-transparent,
 #custom-left-arrow-dark-transparent {
   color: #1d2021;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0);
 }
 #custom-right-arrow-light-transparent,
 #custom-left-arrow-light-transparent {
   color: #292b2e;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0);
 }
 
 #battery,
