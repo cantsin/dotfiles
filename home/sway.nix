@@ -74,8 +74,9 @@ in {
       };
     };
   };
-  home.file.".config/waybar/config".source = "${dotfiles}/home/waybar.config";
-  home.file.".config/waybar/style.css".source = "${dotfiles}/home/waybar.css";
+  home.file.".config/waybar/config".source = "${dotfiles}/home/waybar/config";
+  home.file.".config/waybar/style.css".source =
+    "${dotfiles}/home/waybar/style.css";
   services.redshift = {
     enable = true;
     tray = true;
