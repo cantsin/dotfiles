@@ -40,6 +40,24 @@ in {
       keybindings = lib.mkOptionDefault rec {
         "Print" = ''exec grim -g "$(slurp)"'';
         "Mod4+p" = "exec ${menu}";
+        "Mod4+1" = "workspace $ws1";
+        "Mod4+2" = "workspace $ws2";
+        "Mod4+3" = "workspace $ws3";
+        "Mod4+4" = "workspace $ws4";
+        "Mod4+5" = "workspace $ws5";
+        "Mod4+6" = "workspace $ws6";
+        "Mod4+7" = "workspace $ws7";
+        "Mod4+8" = "workspace $ws8";
+        "Mod4+9" = "workspace $ws9";
+        "Mod4+Shift+1" = "move container to workspace $ws1";
+        "Mod4+Shift+2" = "move container to workspace $ws2";
+        "Mod4+Shift+3" = "move container to workspace $ws3";
+        "Mod4+Shift+4" = "move container to workspace $ws4";
+        "Mod4+Shift+5" = "move container to workspace $ws5";
+        "Mod4+Shift+6" = "move container to workspace $ws6";
+        "Mod4+Shift+7" = "move container to workspace $ws7";
+        "Mod4+Shift+8" = "move container to workspace $ws8";
+        "Mod4+Shift+9" = "move container to workspace $ws9";
       };
       colors = {
         focused = {
@@ -73,6 +91,18 @@ in {
         background = "${black}";
       };
     };
+    extraConfig = ''
+      set $ws1 α
+      set $ws2 β
+      set $ws3 γ
+      set $ws4 δ
+      set $ws5 ε
+      set $ws6 ζ
+      set $ws7 η
+      set $ws8 θ
+      set $ws9 ι
+      set $ws10 κ
+    '';
   };
   home.file.".config/waybar/config".source = "${dotfiles}/home/waybar/config";
   home.file.".config/waybar/style.css".source =
