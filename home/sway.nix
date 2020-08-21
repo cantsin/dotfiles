@@ -20,7 +20,7 @@ in {
     config = rec {
       input = { "*" = { xkb_options = "ctrl:nocaps"; }; };
       output = {
-        "eDP-1" = { scale = "2"; };
+        "eDP-1" = { scale = if hostname == "mu" then "1" else "2"; };
         "DP-2" = { scale = "2"; };
         "DP-3" = { position = "0 0"; };
         "DVI-D-1" = { position = "2560 0"; };
