@@ -119,6 +119,8 @@ in {
       fi
     }
     eval "$(direnv hook zsh)"
+    bindkey -r "^[l"
+    bindkey "^[h" backward-kill-word
     source ~/.p10k.zsh
   '';
 
