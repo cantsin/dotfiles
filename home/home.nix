@@ -123,7 +123,7 @@ in {
     bindkey "^[h" backward-kill-word
     source ~/.p10k.zsh
   '';
-
+  programs.zsh.shellAliases = { "emacs" = "emacsclient -c"; };
   programs.zsh.oh-my-zsh = {
     plugins = [ "tmux " ];
     enable = true;
@@ -208,6 +208,11 @@ in {
 
   # fix java applications
   home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
+
+  # editor
+  home.sessionVariables.ALTERNATE_EDITOR = "";
+  home.sessionVariables.EDITOR = "emacsclient -t";
+  home.sessionVariables.VISUAL = "emacsclient -c -a emacs";
 
   imports = [ ./experimental.nix ./sway.nix ]
     ++ (if builtins.pathExists ./secrets/default.nix then
