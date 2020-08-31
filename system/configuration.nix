@@ -81,7 +81,18 @@ in {
 
   programs.ssh.startAgent = true;
 
-  programs.sway.enable = true;
+  programs.sway = {
+    enable = true;
+    extraPackages = with pkgs; [
+      swaylock-effects
+      swayidle
+      xwayland
+      waybar
+      mako
+      kanshi
+    ];
+    # swaylock --screenshots --effect-vignette 0.25:0.5 --effect-blur 5x5
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -111,16 +122,16 @@ in {
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "ctrl:nocaps";
 
-  #services.xserver.windowManager.sway.enable = true;
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.displayManager.defaultSession = "sway";
+  services.xserver.displayManager.gdm = {
+    enable = true;
+    wayland = true;
+  };
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
   services.xserver.libinput.disableWhileTyping = true;
-
-  # fix dconf/dbus errors
-  # services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
