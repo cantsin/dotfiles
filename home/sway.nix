@@ -102,6 +102,7 @@ in {
       set $ws8 θ
       set $ws9 ι
       set $ws10 κ
+      exec "swayidle -w timeout 300 'swaylock --screenshots --effect-blur 5x5' timeout 600 'swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' before-sleep 'swaylock --screenshots --effect-blur 5x5'"
     '';
   };
   home.file.".config/waybar/config".source = "${dotfiles}/home/waybar/config";

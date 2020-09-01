@@ -91,7 +91,6 @@ in {
       mako
       kanshi
     ];
-    # swaylock --screenshots --effect-vignette 0.25:0.5 --effect-blur 5x5
   };
 
   # Enable the OpenSSH daemon.
