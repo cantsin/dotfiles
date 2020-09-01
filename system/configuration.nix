@@ -80,18 +80,7 @@ in {
   };
 
   programs.ssh.startAgent = true;
-
-  programs.sway = {
-    enable = true;
-    extraPackages = with pkgs; [
-      swaylock-effects
-      swayidle
-      xwayland
-      waybar
-      mako
-      kanshi
-    ];
-  };
+  programs.sway.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

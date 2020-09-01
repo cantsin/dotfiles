@@ -12,7 +12,17 @@ let
   dotfiles = "/home/james/.dotfiles";
 
 in {
-  home.packages = with pkgs; [ grim slurp wl-clipboard ];
+  home.packages = with pkgs; [
+    grim
+    kanshi
+    mako
+    slurp
+    swayidle
+    swaylock-effects
+    wf-recorder
+    wl-clipboard
+    xwayland
+  ];
   xsession.windowManager.command = "${pkgs.waybar}/bin/waybar";
   xsession.preferStatusNotifierItems = true; # enable nm-applet
   wayland.windowManager.sway = {
@@ -39,6 +49,9 @@ in {
       bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
       keybindings = lib.mkOptionDefault rec {
         "Print" = ''exec grim -g "$(slurp)"'';
+        "Mod4+Print" = ''
+          exec wf-recorder -g "$(slurp)" -f ~/recording_$(date +"%Y-%m-%d_%H:%M:%S.mp4")'';
+        "Mod4+Backspace" = "exec pkill -INT wf-recorder";
         "Mod4+p" = "exec ${menu}";
         "Mod4+1" = "workspace $ws1";
         "Mod4+2" = "workspace $ws2";
