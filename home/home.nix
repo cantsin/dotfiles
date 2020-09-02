@@ -41,6 +41,7 @@ in {
       brightnessctl
       direnv
       evince
+      fd
       feh
       file
       gcc
@@ -50,6 +51,7 @@ in {
       nmap
       pstree
       ripgrep
+      sd
       st
       tig
       tmux
