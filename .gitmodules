@@ -10,3 +10,6 @@
 [submodule "home/powerlevel10k"]
 	path = home/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k
+[submodule "fonts/valkyrie"]
+	path = fonts/valkyrie
+	url = ssh://git@git.home/james/valkyrie
