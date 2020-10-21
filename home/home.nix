@@ -197,11 +197,11 @@ in {
     };
     ".p10k.zsh".source = "${dotfiles}/home/p10k.zsh";
     ".config/bc".source = "${dotfiles}/bc";
-    ".backgrounds".source = "${dotfiles}/backgrounds";
-    ".emacs.d" = {
+    ".config/emacs" = {
       source = "${dotfiles}/emacs.d";
       recursive = true;
     };
+    ".backgrounds".source = "${dotfiles}/backgrounds";
     ".local/share/fonts" = {
       source = "${dotfiles}/fonts";
       recursive = true;
