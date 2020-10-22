@@ -1,9 +1,16 @@
 { config, pkgs, ... }:
 
 let
+  lib = import <nixpkgs/lib>;
   hostName = (import ./hostname.nix).hostName;
   secureBoot = builtins.elem hostName [ "satori" ];
 in {
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
+      "experimental-features = nix-command flakes";
+  };
+
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ] ++ (builtins.filter builtins.pathExists [
@@ -61,7 +68,7 @@ in {
   ];
 
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       anonymousPro
@@ -124,7 +131,7 @@ in {
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
 
   services.nixops-dns = {
     enable = true;
