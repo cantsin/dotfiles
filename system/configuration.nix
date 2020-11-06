@@ -2,8 +2,8 @@
 
 let
   lib = import <nixpkgs/lib>;
-  hostName = (import ./hostname.nix).hostName;
-  secureBoot = builtins.elem hostName [ "satori" ];
+  settings = (import ./settings.nix);
+  secureBoot = builtins.elem settings.hostName [ "satori" ];
 in {
   nix = {
     package = pkgs.nixFlakes;
@@ -36,7 +36,7 @@ in {
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [ "amd_iommu=pt" "iommu=soft" "amdgpu.dpm=0" ];
 
-  networking.hostName = hostName;
+  networking.hostName = settings.hostName;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
 
