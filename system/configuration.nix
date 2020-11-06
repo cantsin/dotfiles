@@ -2,7 +2,7 @@
 
 let
   lib = import <nixpkgs/lib>;
-  settings = (import ./settings.nix);
+  settings = import ./settings.nix;
   secureBoot = builtins.elem settings.hostName [ "satori" ];
 in {
   nix = {
@@ -87,7 +87,6 @@ in {
   };
 
   programs.ssh.startAgent = true;
-  programs.sway.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -118,7 +117,13 @@ in {
   services.xserver.xkbOptions = "ctrl:nocaps";
 
   services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.displayManager.defaultSession = "sway";
+
+  # i3 or sway.
+  programs.sway.enable = !settings.i3;
+  services.xserver.windowManager.i3.enable = settings.i3;
+  services.xserver.displayManager.defaultSession =
+    if settings.i3 then "none+i3" else "sway";
+
   services.xserver.displayManager.gdm = {
     enable = true;
     wayland = true;

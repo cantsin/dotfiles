@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+  settings = import ./settings.nix;
   useRemacs = false;
   dotfiles = "/home/james/.dotfiles";
 in {
@@ -216,7 +217,9 @@ in {
   home.sessionVariables.EDITOR = "emacsclient -t";
   home.sessionVariables.VISUAL = "emacsclient -c -a emacs";
 
-  imports = [ ./experimental.nix ./sway.nix ]
+  imports =
+    (if settings.i3 then [ ./i3.nix ./background.nix ] else [ ./sway.nix ])
+    ++ [ ./experimental.nix ]
     ++ (if builtins.pathExists ./secrets/default.nix then
       [ ./secrets/default.nix ]
     else

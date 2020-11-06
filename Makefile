@@ -29,6 +29,7 @@ init-home-manager:
 
 home:
 	rm -f ~/.config/nixpkgs/*.{nix,h,patch}
+	cp system/settings.nix ~/.config/nixpkgs/
 	cp home/*.nix ~/.config/nixpkgs/
 	mkdir -p ~/.config/nixpkgs/st
 	cp home/st/*.{h,patch} ~/.config/nixpkgs/st
