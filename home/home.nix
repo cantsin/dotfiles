@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+  settings = import ./settings.nix;
   useRemacs = false;
   dotfiles = "/home/james/.dotfiles";
 in {
@@ -41,6 +42,7 @@ in {
       brightnessctl
       direnv
       evince
+      fd
       feh
       file
       gcc
@@ -50,6 +52,7 @@ in {
       nmap
       pstree
       ripgrep
+      sd
       st
       tig
       tmux
@@ -123,7 +126,7 @@ in {
     bindkey "^[h" backward-kill-word
     source ~/.p10k.zsh
   '';
-
+  programs.zsh.shellAliases = { "emacs" = "emacsclient -c"; };
   programs.zsh.oh-my-zsh = {
     plugins = [ "tmux " ];
     enable = true;
@@ -156,20 +159,11 @@ in {
     '';
   };
 
-  xsession = {
-    enable = true;
-    windowManager.i3 = import ./i3.nix pkgs;
-    initExtra = ''
-      xmodmap ~/.Xmodmap
-    '';
-  };
-
   programs.jq.enable = true;
   programs.browserpass.enable = true;
   programs.firefox.enable = true;
 
   services.emacs.enable = !useRemacs;
-
   services.gpg-agent = {
     enable = true;
     extraConfig = ''
@@ -177,23 +171,8 @@ in {
       allow-loopback-pinentry
     '';
   };
-
   services.lorri.enable = true;
-  services.flameshot.enable = true;
   services.network-manager-applet.enable = true;
-  services.polybar = import ./polybar.nix pkgs;
-  services.redshift = {
-    enable = true;
-    tray = true;
-    latitude = "37.733795";
-    longitude = "-122.446747";
-    provider = "manual";
-  };
-
-  services.screen-locker = {
-    enable = true;
-    lockCmd = "${pkgs.i3lock-fancy}/bin/i3lock-fancy -pf Triplicate-T3c";
-  };
 
   home.file = {
     ".Xmodmap" = {
@@ -220,7 +199,7 @@ in {
     ".p10k.zsh".source = "${dotfiles}/home/p10k.zsh";
     ".config/bc".source = "${dotfiles}/bc";
     ".backgrounds".source = "${dotfiles}/backgrounds";
-    ".emacs.d" = {
+    ".config/emacs" = {
       source = "${dotfiles}/emacs.d";
       recursive = true;
     };
@@ -233,7 +212,14 @@ in {
   # fix java applications
   home.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
 
-  imports = [ ./background.nix ./experimental.nix ]
+  # editor
+  home.sessionVariables.ALTERNATE_EDITOR = "";
+  home.sessionVariables.EDITOR = "emacsclient -t";
+  home.sessionVariables.VISUAL = "emacsclient -c -a emacs";
+
+  imports =
+    (if settings.i3 then [ ./i3.nix ./background.nix ] else [ ./sway.nix ])
+    ++ [ ./experimental.nix ]
     ++ (if builtins.pathExists ./secrets/default.nix then
       [ ./secrets/default.nix ]
     else

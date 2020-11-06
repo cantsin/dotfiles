@@ -1,9 +1,16 @@
 { config, pkgs, ... }:
 
 let
-  hostName = (import ./hostname.nix).hostName;
-  secureBoot = builtins.elem hostName [ "satori" ];
+  lib = import <nixpkgs/lib>;
+  settings = import ./settings.nix;
+  secureBoot = builtins.elem settings.hostName [ "satori" ];
 in {
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
+      "experimental-features = nix-command flakes";
+  };
+
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ] ++ (builtins.filter builtins.pathExists [
@@ -29,14 +36,15 @@ in {
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [ "amd_iommu=pt" "iommu=soft" "amdgpu.dpm=0" ];
 
-  networking.hostName = hostName;
+  networking.hostName = settings.hostName;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
   console = {
     font = "Lat2-Terminus16";
-    keyMap = "us";
+    # keyMap = "us";
+    useXkbConfig = true;
   };
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -60,7 +68,7 @@ in {
   ];
 
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       anonymousPro
@@ -106,26 +114,29 @@ in {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "us";
-  services.xserver.xkbOptions = "eurosign:e";
-  services.xserver.windowManager.i3.enable = true;
+  services.xserver.xkbOptions = "ctrl:nocaps";
+
   services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.displayManager.defaultSession = "none+i3";
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.lightdm.extraSeatDefaults = ''
-    greeter-hide-users=false
-  '';
+
+  # i3 or sway.
+  programs.sway.enable = !settings.i3;
+  services.xserver.windowManager.i3.enable = settings.i3;
+  services.xserver.displayManager.defaultSession =
+    if settings.i3 then "none+i3" else "sway";
+
+  services.xserver.displayManager.gdm = {
+    enable = true;
+    wayland = true;
+  };
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
   services.xserver.libinput.disableWhileTyping = true;
 
-  # fix dconf/dbus errors
-  services.dbus.packages = with pkgs; [ gnome3.dconf ];
-
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
 
   services.nixops-dns = {
     enable = true;

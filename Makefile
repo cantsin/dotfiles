@@ -3,18 +3,18 @@
 system:
 	sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
 	sudo cp system/configuration.nix /etc/nixos/
-	if [ ! -f system/hostname.nix ]; then \
-		echo "Hostname is required."; \
+	if [ ! -f system/settings.nix ]; then \
+		echo "Settings are required."; \
 		exit 1; \
 	fi
-	sudo cp system/hostname.nix /etc/nixos/
+	sudo cp system/settings.nix /etc/nixos/
 	if [ -f home/secrets/default.nix ]; then \
 		sudo cp home/secrets/system-*.nix /etc/nixos/; \
 	fi
 	sudo nixos-rebuild --upgrade switch
 
-hostname:
-	echo "{ hostName = \"${HOSTNAME}\"; }" > system/hostname.nix
+settings:
+	echo "{ hostName = \"${HOSTNAME}\"; }" > system/settings.nix
 
 
 init:
@@ -29,6 +29,7 @@ init-home-manager:
 
 home:
 	rm -f ~/.config/nixpkgs/*.{nix,h,patch}
+	cp system/settings.nix ~/.config/nixpkgs/
 	cp home/*.nix ~/.config/nixpkgs/
 	mkdir -p ~/.config/nixpkgs/st
 	cp home/st/*.{h,patch} ~/.config/nixpkgs/st
