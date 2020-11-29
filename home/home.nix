@@ -219,7 +219,7 @@ in {
 
   imports =
     (if settings.i3 then [ ./i3.nix ./background.nix ] else [ ./sway.nix ])
-    ++ [ ./experimental.nix ]
+    ++ [ ./experimental.nix ./vale.nix ]
     ++ (if builtins.pathExists ./secrets/default.nix then
       [ ./secrets/default.nix ]
     else
