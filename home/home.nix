@@ -148,8 +148,8 @@ in {
       set-option -g display-panes-active-colour blue
       set-option -g display-panes-colour brightred
       set-window-option -g mode-keys emacs
-      set-window-option -g window-status-style fg=colour75,bg=default
-      set-window-option -g window-status-current-style fg=white,bg=default,dim
+      set-window-option -g window-status-style fg=white,bg=default,dim
+      set-window-option -g window-status-current-style fg=blue,bg=default
       set-window-option -g window-status-bell-style fg=colour237,bg=red
       set -g prefix C-o
       unbind-key -n C-a
