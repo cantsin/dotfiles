@@ -161,7 +161,6 @@ in {
 
   programs.jq.enable = true;
   programs.browserpass.enable = true;
-  programs.firefox.enable = true;
 
   services.emacs.enable = !useRemacs;
   services.gpg-agent = {

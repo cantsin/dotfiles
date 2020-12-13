@@ -7,7 +7,7 @@ system:
 		echo "Settings are required."; \
 		exit 1; \
 	fi
-	sudo cp system/settings.nix /etc/nixos/
+	sudo cp system/{settings,firefox}.nix /etc/nixos/
 	if [ -f home/secrets/default.nix ]; then \
 		sudo cp home/secrets/system-*.nix /etc/nixos/; \
 	fi
