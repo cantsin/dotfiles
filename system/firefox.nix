@@ -15,7 +15,13 @@ let
   customFirefox = pkgs.firefox.override {
     nixExtensions = [ bitwarden darkreader ];
     extraPolicies = {
-      DefaultDownloadDirectory = "";
+      Certificates = {
+        ImportEnterpriseRoots = true;
+        Install =
+          [ "bitwarden.pem" "freenas.pem" "git.pem" "media.pem" "rss.pem" ];
+      };
+      DownloadDirectory = "\${home}";
+      DefaultDownloadDirectory = "\${home}";
       DisableFirefoxAccounts = true;
       DisableFirefoxStudies = true;
       DisableFormHistory = true;
