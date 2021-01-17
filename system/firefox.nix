@@ -6,14 +6,13 @@ let
       "https://addons.mozilla.org/firefox/downloads/file/3688243/bitwarden_free_password_manager-1.47.1-an+fx.xpi";
     sha256 = "+DwVSW4ZrnlVgbj7zlIYPFzjHnKdMUY/t2vtiD3+rYQ=";
   };
-  darkreader = pkgs.fetchFirefoxAddon {
-    name = "darkreader";
-    url =
-      "https://addons.mozilla.org/firefox/downloads/file/3684946/dark_reader-4.9.26-an+fx.xpi";
-    sha256 = "XyokSVJPWrBcLoVo0meMayV5XofOd+vJRI4T6BhOPF8=";
+  adblock = pkgs.fetchFirefoxAddon {
+    name = "adblock-plus";
+    url = "https://addons.mozilla.org/firefox/downloads/file/3694628/adblock_plus-3.10.1-an+fx.xpi";
+    sha256 = "hWAKYODe820K9OcwK5zHOcRkafvbh5wtokJiwOp62YI=";
   };
   customFirefox = pkgs.firefox.override {
-    nixExtensions = [ bitwarden darkreader ];
+    nixExtensions = [ bitwarden adblock ];
     extraPolicies = {
       Certificates = {
         ImportEnterpriseRoots = true;
