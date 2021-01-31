@@ -128,18 +128,25 @@
         "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
         "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
       };
-      startup = [{
-        command = "systemctl --user restart polybar";
-        always = true;
-        notification = false;
-      }];
+      startup = [
+        {
+          command = "${pkgs.autorandr}/bin/autorandr -c";
+          always = true;
+          notification = false;
+        }
+        {
+          command = "systemctl --user restart polybar";
+          always = true;
+          notification = false;
+        }
+      ];
     };
   };
   services.screen-locker = {
     enable = true;
     lockCmd = "${pkgs.i3lock-fancy}/bin/i3lock-fancy -pf Triplicate-T3c";
   };
-  services.autorandr = {
+  programs.autorandr = {
     enable = true;
     profiles = {
       desk = {
@@ -152,24 +159,28 @@
             "00ffffffffffff0010ac65404c3432382e160104b54028783a8d85ad4f35b1250e5054a54b00714f81008180a940d100d14001010101e26800a0a0402e603020360081912100001a000000ff005048354e593242443832344c0a000000fc0044454c4c2055333031310a2020000000fd0031561d711c000a20202020202001f302031df15090050403020716010611121513141f20230d7f07830f0000023a801871382d40582c450081912100001e011d8018711c1620582c250081912100009e011d007251d01e206e28550081912100001e8c0ad08a20e02d10103e9600819121000018000000000000000000000000000000000000000000000000000077";
         };
         config = {
-          "DisplayPort-1" = {
-            enable = true;
-            mode = "3840x2160";
-            position = "5120x0";
-          };
           "DisplayPort-2" = {
             enable = true;
             mode = "2560x1600";
             position = "0x0";
+            rotate = "normal";
             primary = true;
           };
           "DVI-D-0" = {
             enable = true;
             mode = "2560x1600";
             position = "2560x0";
+            rotate = "normal";
+          };
+          "DisplayPort-1" = {
+            enable = true;
+            mode = "3840x2160";
+            position = "5120x0";
+            rotate = "normal";
           };
         };
       };
     };
   };
+
 }
