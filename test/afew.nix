@@ -19,7 +19,7 @@ python37.pkgs.buildPythonApplication rec {
 
   makeWrapperArgs = [ ''--prefix PATH ':' "${notmuch}/bin"'' ];
 
-  meta = with stdenv.lib; {
+  meta = with pkgs.lib; {
     homepage = "https://github.com/afewmail/afew";
     description = "An initial tagging script for notmuch mail";
     license = licenses.isc;

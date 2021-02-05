@@ -96,6 +96,6 @@ in stdenv.mkDerivation rec {
   meta = {
     homepage = "https://github.com/remacs/remacs";
     description = "A community-driven port of Emacs to Rust.";
-    platforms = with stdenv.lib.platforms; unix;
+    platforms = with pkgs.lib.platforms; unix;
   };
 }

@@ -71,7 +71,7 @@ in stdenv.mkDerivation rec {
 
   LD_LIBRARY_PATH = with pkgs.xorg;
     "${
-      stdenv.lib.makeLibraryPath [ libGL libX11 libXcursor libXrandr libXi ]
+      pkgs.lib.makeLibraryPath [ libGL libX11 libXcursor libXrandr libXi ]
     }:/run/opengl-driver/lib:${vulkan-loader}/lib";
   RUST_BACKTRACE = 1;
   RUST_SRC_PATH = "${rustWithSource}/lib/rustlib/src/rust/src";
