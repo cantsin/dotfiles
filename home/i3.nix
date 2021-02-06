@@ -80,8 +80,7 @@
         "Mod4+Return" = "exec i3-sensible-terminal";
         "Mod4+p" =
           "exec dmenu_run -fn 'Triplicate T3c-16'  -sb '#ff8700' -sf '#1d2021'";
-        "Mod4+x" =
-          "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pf Triplicate-T3c";
+        "Mod4+x" = "exec ${pkgs.i3lock}/bin/i3lock -c 1d2021";
         "Mod4+Shift+q" = "kill";
         "Mod4+h" = "split h";
         "Mod4+v" = "split v";
@@ -144,7 +143,7 @@
   };
   services.screen-locker = {
     enable = true;
-    lockCmd = "${pkgs.i3lock-fancy}/bin/i3lock-fancy -pf Triplicate-T3c";
+    lockCmd = "${pkgs.i3lock}/bin/i3lock -c 1d2021";
   };
   programs.autorandr = {
     enable = true;
