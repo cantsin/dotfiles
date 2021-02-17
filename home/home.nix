@@ -64,6 +64,7 @@ in {
       # convenience
       nix-prefetch-scripts
       nix-zsh-completions
+      any-nix-shell
 
       # applets
       networkmanagerapplet
@@ -102,6 +103,7 @@ in {
     ZSH_TMUX_AUTOCONNECT = "false";
   };
   programs.zsh.initExtra = ''
+    any-nix-shell zsh --info-right | source /dev/stdin
     command_not_found_handler() { command-not-found "$1" }
     nixify() {
       if [ ! -e ./.envrc ]; then
