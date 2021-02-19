@@ -83,6 +83,7 @@ in {
       do = "!git fetch origin && git rebase origin/master";
     };
     extraConfig = {
+      init = { defaultBranch = "main"; };
       core = { editor = "emacs"; };
       pull = { rebase = true; };
       rebase = { autostash = true; };
