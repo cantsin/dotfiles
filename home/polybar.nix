@@ -72,6 +72,7 @@ in {
     };
     "module/github" = {
       type = "internal/github";
+      user = "cantsin";
       token = "\${file:~/.github-access-token}";
       format = "<label>";
       label = " %notifications%";
