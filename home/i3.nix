@@ -77,6 +77,8 @@
       ];
       keybindings = {
         "Print" = "exec flameshot gui";
+        "F5" = "exec pkill -f screenkey";
+        "Mod4+F5" = "exec ${pkgs.screenkey}/bin/screenkey";
         "Mod4+Return" = "exec i3-sensible-terminal";
         "Mod4+p" =
           "exec dmenu_run -fn 'Triplicate T3c-16'  -sb '#ff8700' -sf '#1d2021'";

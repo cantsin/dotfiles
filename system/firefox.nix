@@ -8,7 +8,8 @@ let
   };
   adblock = pkgs.fetchFirefoxAddon {
     name = "adblock-plus";
-    url = "https://addons.mozilla.org/firefox/downloads/file/3694628/adblock_plus-3.10.1-an+fx.xpi";
+    url =
+      "https://addons.mozilla.org/firefox/downloads/file/3694628/adblock_plus-3.10.1-an+fx.xpi";
     sha256 = "hWAKYODe820K9OcwK5zHOcRkafvbh5wtokJiwOp62YI=";
   };
   customFirefox = pkgs.firefox.override {
@@ -16,8 +17,7 @@ let
     extraPolicies = {
       Certificates = {
         ImportEnterpriseRoots = true;
-        Install =
-          [ "bitwarden.pem" "freenas.pem" "git.pem" "media.pem" "rss.pem" ];
+        Install = [ "freenas.pem" "media.pem" "home.pem" ];
       };
       DownloadDirectory = "\${home}";
       DefaultDownloadDirectory = "\${home}";
