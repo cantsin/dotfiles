@@ -129,7 +129,7 @@ in {
     bindkey "^[h" backward-kill-word
     source ~/.p10k.zsh
   '';
-  programs.zsh.shellAliases = { "emacs" = "emacsclient -c"; };
+  # programs.zsh.shellAliases = { "emacs" = "emacsclient -c"; };
   programs.zsh.oh-my-zsh = {
     plugins = [ "tmux " ];
     enable = true;
