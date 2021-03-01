@@ -31,8 +31,7 @@ home:
 	rm -f ~/.config/nixpkgs/*.{nix,h,patch}
 	cp system/settings.nix ~/.config/nixpkgs/
 	cp home/*.nix ~/.config/nixpkgs/
-	mkdir -p ~/.config/nixpkgs/st
-	cp home/st/*.{h,patch} ~/.config/nixpkgs/st
+	cp -r overlays ~/.config/nixpkgs/overlays
 	mkdir -p ~/.config/nixpkgs/org-task
 	cp home/org-task/*.{sh,el} ~/.config/nixpkgs/org-task
 	cp test/afew.nix ~/.config/nixpkgs/
