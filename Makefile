@@ -31,7 +31,6 @@ home:
 	rm -f ~/.config/nixpkgs/*.{nix,h,patch}
 	cp system/settings.nix ~/.config/nixpkgs/
 	cp home/*.nix ~/.config/nixpkgs/
-	cp -r overlays ~/.config/nixpkgs/overlays
 	cp test/afew.nix ~/.config/nixpkgs/
 	cp -r home/remacs ~/.config/nixpkgs/
 	cp emacs.d/packages.nix ~/.config/nixpkgs/emacs-packages.nix

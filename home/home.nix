@@ -7,8 +7,6 @@ let
 in {
   programs.home-manager.enable = true;
 
-  nixpkgs.overlays = [ (import ./overlays/st.nix) ];
-
   home.packages = with pkgs;
     [
       arandr
