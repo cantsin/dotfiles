@@ -32,8 +32,6 @@ home:
 	cp system/settings.nix ~/.config/nixpkgs/
 	cp home/*.nix ~/.config/nixpkgs/
 	cp -r overlays ~/.config/nixpkgs/overlays
-	mkdir -p ~/.config/nixpkgs/org-task
-	cp home/org-task/*.{sh,el} ~/.config/nixpkgs/org-task
 	cp test/afew.nix ~/.config/nixpkgs/
 	cp -r home/remacs ~/.config/nixpkgs/
 	cp emacs.d/packages.nix ~/.config/nixpkgs/emacs-packages.nix

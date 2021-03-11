@@ -132,13 +132,6 @@ in {
       label = " %date%  %time%";
       label-foreground = "\${color.white}";
     };
-    "module/current-task" = {
-      type = "custom/script";
-      exec = "~/.config/nixpkgs/org-task/org-task.sh";
-      label = "task: %output%";
-      interval = 30;
-      label-foreground = "\${color.darkwhite}";
-    };
   };
   script = "polybar status &";
 }
